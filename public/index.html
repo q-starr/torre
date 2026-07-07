@@ -10,7 +10,7 @@
 :root{
   --void:#0B1526; --panel:#10203A; --panel2:#142743; --line:#23395C;
   --teal:#14A79A; --teal-dim:#0E8C84; --teal-soft:rgba(20,167,154,.14);
-  --ice:#D9E6EC; --muted:#7C8FA8; --amber:#E3B341; --rose:#E36565;
+  --ice:#D9E6EC; --muted:#7C8FA8; --amber:#E3B341; --rose:#E36565; --blue:#5FB8FF;
   --disp:"Barlow Condensed",sans-serif; --body:"Barlow",sans-serif; --mono:"IBM Plex Mono",monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -24,36 +24,104 @@ button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 button.active{background:var(--teal-soft);border-color:var(--teal);color:#CFF3EF}
 button.danger.active{background:rgba(227,101,101,.12);border-color:var(--rose);color:#F3C9C9}
 button.warn.active{background:rgba(227,179,65,.12);border-color:var(--amber);color:#F1DFAE}
+button.ghost{background:transparent;border-color:transparent;color:var(--muted);font-size:11px;padding:.35rem .5rem}
+button.ghost:hover{border-color:var(--line)}
+button:disabled{cursor:default;opacity:.55;border-color:var(--line)}
 .wrap{max-width:1360px;margin:0 auto;padding:14px 18px 10px}
 /* ---------- header ---------- */
 header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px}
-.mark{display:flex;align-items:baseline;gap:10px}
+.mark{display:flex;align-items:center;gap:14px}
 .mark h1{font-family:var(--disp);font-weight:700;font-size:34px;letter-spacing:.06em;color:#EAF4F2}
 .mark h1 span{color:var(--teal)}
-.mark .sub{font-size:12px;color:var(--muted);letter-spacing:.04em}
+.mark .eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.mark .vp{font-family:var(--disp);font-weight:600;font-size:21px;line-height:1.12;color:#EAF4F2;max-width:560px}
 .simbadge{font-family:var(--mono);font-size:10.5px;color:var(--amber);border:1px solid rgba(227,179,65,.45);
   border-radius:4px;padding:2px 7px;letter-spacing:.08em}
 .hcontrols{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .hlabel{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-right:2px}
+.scen{display:flex;gap:8px;align-items:center;border:1px dashed var(--line);border-radius:8px;padding:4px 8px}
 /* ---------- metrics ---------- */
-.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0 10px}
 .tile{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px 12px;position:relative;overflow:hidden}
 .tile .k{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .tile .v{font-family:var(--disp);font-weight:600;font-size:34px;letter-spacing:.02em;margin-top:2px;font-variant-numeric:tabular-nums}
 .tile .s{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
 .tile.hero{border-color:var(--teal-dim);background:linear-gradient(180deg,rgba(20,167,154,.12),rgba(20,167,154,.03))}
-.tile.hero .v{color:var(--teal);font-size:40px}
+.tile.spread{grid-column:span 2}
+.spread .body{display:flex;gap:16px;align-items:center;margin-top:9px}
+.spread .bars{flex:1;display:flex;flex-direction:column;gap:9px;min-width:0}
+.brow{display:grid;grid-template-columns:auto minmax(36px,1fr) auto;gap:8px;align-items:center}
+.brow .bl{font-family:var(--mono);font-size:10px;color:var(--muted);white-space:nowrap;max-width:170px;overflow:hidden;text-overflow:ellipsis}
+.brow .track{height:10px;border-radius:6px;background:rgba(255,255,255,.06);overflow:hidden}
+.brow .track i{display:block;height:100%;width:0;border-radius:6px;transition:width .4s}
+.brow.base .track i{background:var(--amber)} .brow.act .track i{background:var(--teal)}
+.brow .bv{font-family:var(--mono);font-size:11px;text-align:right;font-variant-numeric:tabular-nums}
+.brow.base .bv{color:var(--amber)} .brow.act .bv{color:var(--teal)}
+.spread .pct{text-align:center;flex:none}
+.spread .pct .pv{font-family:var(--disp);font-weight:600;font-size:44px;line-height:1;color:var(--teal);font-variant-numeric:tabular-nums}
+/* ---------- revenue strip ---------- */
+.revstrip{display:grid;grid-template-columns:auto repeat(3,1fr);gap:10px;margin-bottom:12px;align-items:stretch}
+.rml{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;max-width:52px}
+.rev{display:flex;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.rev .num{font-family:var(--mono);color:var(--teal);font-size:11px;padding-top:3px}
+.rev .rt{font-family:var(--disp);font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#BFD6DF}
+.rev .rd{font-size:11px;color:var(--muted)}
+.rev .rh{font-family:var(--mono);font-size:9.5px;color:var(--teal-dim);margin-top:2px}
 /* ---------- main grid ---------- */
-.main{display:grid;grid-template-columns:236px 1fr 328px;gap:12px;align-items:start}
+.main{display:grid;grid-template-columns:1fr 328px;gap:12px;align-items:start}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
 .card h2{font-family:var(--disp);font-weight:600;font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:#BFD6DF;margin-bottom:10px}
 .card h2 em{font-style:normal;color:var(--teal)}
-/* policies */
-.pol{display:flex;flex-direction:column;gap:12px}
+.card h2 .h2sub{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0;text-transform:none;font-weight:400}
+/* ---------- flowboard: IN → HUB → OUT ---------- */
+.board{position:relative;min-height:560px;padding:12px}
+#wires{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+#wires path{fill:none;transition:stroke-width .4s}
+.boardgrid{position:relative;z-index:2;display:grid;grid-template-columns:150px 250px 1fr;grid-template-rows:auto 1fr;
+  column-gap:26px;row-gap:8px;height:100%}
+.zl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8FA6BF;padding-bottom:2px}
+.zl.c{text-align:center}
+.zl b{color:var(--teal);font-weight:400}
+.tenants{display:flex;flex-direction:column;gap:8px}
+.tenant{border:1px solid var(--line);background:var(--panel2);border-radius:8px;padding:7px 9px;transition:border-color .4s,box-shadow .4s}
+.tenant .n{font-size:12px;font-weight:600}
+.tenant .j{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.tenant.new{border-color:var(--teal);box-shadow:0 0 12px rgba(20,167,154,.5)}
+/* hub column */
+.hubcol{display:flex;flex-direction:column;justify-content:center}
+#hub{border:1px solid var(--teal);border-radius:12px 12px 0 0;background:linear-gradient(180deg,var(--panel2),var(--panel));
+  box-shadow:0 0 26px rgba(20,167,154,.22);padding:12px;position:relative;min-height:240px;
+  display:flex;flex-direction:column;justify-content:center;transition:border-color .25s,box-shadow .25s}
+#hub::before,#hub::after{content:"";position:absolute;top:16px;bottom:16px;width:6px;
+  background:repeating-linear-gradient(180deg,var(--line) 0 2px,transparent 2px 16px)}
+#hub::before{left:-7px} #hub::after{right:-7px}
+.hubname{font-family:var(--disp);font-weight:700;font-size:18px;letter-spacing:.12em;color:#EAF4F2}
+.hubsub{font-family:var(--mono);font-size:9.5px;color:var(--muted);margin-bottom:10px}
+#readout{min-height:76px;display:flex;flex-direction:column;gap:3px;justify-content:center;
+  border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:8px 0;margin-bottom:10px}
+#roWho{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#roLane{font-family:var(--disp);font-weight:600;font-size:25px;line-height:1.05;font-variant-numeric:tabular-nums;
+  color:var(--teal);white-space:nowrap;overflow:hidden}
+#roWhy{font-family:var(--mono);font-size:10.5px;color:var(--ice);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#crit{display:flex;flex-wrap:wrap;gap:5px}
+#crit span{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;border:1px solid var(--line);border-radius:4px;
+  padding:1px 6px;color:var(--muted);transition:color .2s,border-color .2s}
+#polLink{width:2px;height:22px;background:var(--teal-dim);margin:0 auto;position:relative;flex:none;
+  transition:background .2s,box-shadow .2s}
+#polLink.pulse{background:var(--teal);box-shadow:0 0 10px var(--teal)}
+#polLink::after{content:"POLICY";position:absolute;left:8px;top:50%;transform:translateY(-50%);
+  font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--muted)}
+.polpanel{border:1px solid var(--line);border-top:1px dashed var(--teal-dim);border-radius:0 0 12px 12px;
+  background:var(--panel);padding:12px;display:flex;flex-direction:column;gap:12px}
+.polpanel h2{font-family:var(--disp);font-weight:600;font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:#BFD6DF;margin-bottom:0}
+.polpanel h2 em{font-style:normal;color:var(--teal)}
+.polsub{font-size:10.5px;color:var(--muted);margin-top:-8px}
 .toggle{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .toggle .t{font-size:12.5px}
 .toggle .d{font-size:10.5px;color:var(--muted)}
-.sw{width:38px;height:20px;border-radius:20px;background:var(--panel2);border:1px solid var(--line);position:relative;flex:none}
+.sw{width:38px;height:20px;border-radius:20px;background:var(--panel2);border:1px solid var(--line);position:relative;flex:none;cursor:pointer}
 .sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--muted);transition:all .18s}
 .sw.on{background:var(--teal-soft);border-color:var(--teal)}
 .sw.on::after{left:20px;background:var(--teal)}
@@ -61,58 +129,66 @@ header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px
 .slider input{width:100%;accent-color:var(--teal)}
 .slider .val{font-family:var(--mono);font-size:11px;color:var(--teal)}
 .polnote{font-size:10.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
-/* flowboard — the signature */
-.board{position:relative;min-height:472px;padding:12px 12px 8px}
-.boardgrid{display:grid;grid-template-columns:158px 1fr;gap:14px;height:100%}
-.tenants{display:flex;flex-direction:column;gap:8px}
-.tenant{border:1px solid var(--line);background:var(--panel2);border-radius:8px;padding:7px 9px}
-.tenant .n{font-size:12px;font-weight:600}
-.tenant .j{font-family:var(--mono);font-size:10px;color:var(--muted)}
-.lanes{display:flex;flex-direction:column;gap:12px}
+/* lanes */
+.lanes{display:flex;flex-direction:column;gap:12px;min-width:0}
 .lane{position:relative;border:1px solid var(--line);border-radius:10px;background:
   repeating-linear-gradient(90deg,transparent 0 26px,rgba(255,255,255,.028) 26px 28px),var(--panel2);
-  padding:9px 12px;min-height:118px;transition:opacity .3s,border-color .3s}
-.lane .lh{display:flex;align-items:baseline;gap:10px}
-.lane .lh .nm{font-family:var(--disp);font-weight:600;font-size:18px;letter-spacing:.08em;text-transform:uppercase}
-.lane .lh .rate{font-family:var(--mono);font-size:11px;color:var(--muted)}
-.lane .lh .cnt{margin-left:auto;font-family:var(--disp);font-size:26px;font-weight:600;font-variant-numeric:tabular-nums}
+  padding:9px 12px;transition:opacity .3s,border-color .3s}
+.lanes .lane.frontier{min-height:88px} .lanes .lane.open{min-height:180px;flex:1} .lanes .lane.sov{min-height:116px}
+.lane .lh{display:flex;align-items:baseline;gap:8px;min-width:0}
+.lane .lh .nm{font-family:var(--disp);font-weight:600;font-size:18px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lane .sub{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:1px}
+.lane .sub .raw{font-size:10.5px}
+.lane .lh .cnt{margin-left:auto;font-family:var(--disp);font-size:26px;font-weight:600;font-variant-numeric:tabular-nums;flex:none}
 .lane .desc{font-size:10.5px;color:var(--muted);margin-top:1px}
-.lane .sharebar{height:5px;border-radius:4px;background:rgba(255,255,255,.06);margin-top:9px;overflow:hidden}
+.lane .sharebar{height:8px;border-radius:4px;background:rgba(255,255,255,.06);margin-top:9px;overflow:hidden}
 .lane .sharebar i{display:block;height:100%;width:0%;transition:width .4s}
-.lane.frontier{--lc:var(--amber)} .lane.open{--lc:var(--teal)} .lane.sov{--lc:#5FB8FF}
+.lane.frontier{--lc:var(--amber)} .lane.open{--lc:var(--teal)} .lane.sov{--lc:var(--blue)}
 .lane .lh .nm{color:var(--lc)} .lane .lh .cnt{color:var(--lc)} .lane .sharebar i{background:var(--lc)}
-.lane .tag{position:absolute;top:9px;right:12px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
-  border:1px solid;border-radius:4px;padding:1px 6px;display:none}
-.lane.outage{opacity:.45;border-color:var(--rose)}
+.lane .tag{display:none;font-family:var(--mono);font-size:10px;letter-spacing:.1em;border:1px solid;border-radius:4px;padding:1px 6px}
+.lane.outage{opacity:.5;border-color:var(--rose)}
 .lane.outage .tag.out{display:inline-block;color:var(--rose);border-color:var(--rose)}
 .lane .tag.hike{color:var(--amber);border-color:var(--amber)}
-.dot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px rgba(20,167,154,.8);
-  transition:transform .68s cubic-bezier(.3,.8,.4,1);z-index:3;pointer-events:none}
+.lane .tag.maj{color:var(--teal);border-color:var(--teal)}
+.plugs{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.plugs span{font-family:var(--mono);font-size:10px;border:1px solid var(--line);border-radius:4px;padding:2px 7px;background:var(--panel)}
+.plugs span.more{border-style:dashed;color:var(--muted)}
+.dot{position:absolute;top:0;left:0;width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px rgba(20,167,154,.8);z-index:3;pointer-events:none}
 .dot.f{background:var(--amber);box-shadow:0 0 8px rgba(227,179,65,.8)}
-.dot.s{background:#5FB8FF;box-shadow:0 0 8px rgba(95,184,255,.8)}
+.dot.s{background:var(--blue);box-shadow:0 0 8px rgba(95,184,255,.8)}
+.dot.n{background:#D9E6EC;box-shadow:0 0 8px rgba(217,230,236,.7)}
 .banner{position:absolute;left:50%;top:8px;transform:translateX(-50%);background:var(--panel2);border:1px solid var(--teal);
-  color:#CFF3EF;border-radius:6px;padding:5px 12px;font-size:12px;z-index:5;display:none}
-/* right rail */
+  color:#CFF3EF;border-radius:6px;padding:5px 12px;font-size:12px;z-index:5;display:none;white-space:nowrap}
+/* ---------- right rail ---------- */
 .rail{display:flex;flex-direction:column;gap:12px}
-.log{max-height:238px;overflow:auto;font-family:var(--mono);font-size:10.6px}
+.logsub{font-size:10.5px;color:var(--muted);margin:-6px 0 8px}
+.log{max-height:214px;overflow:auto;font-family:var(--mono);font-size:10.6px}
 .log .row{display:flex;gap:7px;padding:4px 2px;border-bottom:1px dashed rgba(35,57,92,.6);align-items:baseline}
 .log .seq{color:var(--muted);flex:none;width:34px}
 .log .who{color:var(--ice);flex:none;width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .log .ln{flex:none;width:8px;height:8px;border-radius:50%;position:relative;top:0px}
 .log .why{color:var(--muted);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .log .c{color:var(--teal);flex:none}
-.pipe .item{border:1px solid var(--line);border-left:3px solid #5FB8FF;border-radius:6px;background:var(--panel2);
+.pipe .item{border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:6px;background:var(--panel2);
   padding:6px 9px;margin-bottom:7px;font-size:11.5px}
 .pipe .item b{font-size:12px}
 .pipe .item .m{font-family:var(--mono);font-size:10px;color:var(--muted)}
 .pipe .empty{font-size:11.5px;color:var(--muted)}
-.take .row2{display:flex;justify-content:space-between;font-size:12px;padding:3px 0}
-.take .row2 b{font-family:var(--mono);color:var(--teal)}
+.take .row2{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;padding:3px 0;gap:10px}
+.take .row2 b{font-family:var(--mono);color:var(--teal);flex:none}
+.take .rsub{font-family:var(--mono);font-size:9.5px;color:var(--muted)}
 .take .tot{border-top:1px solid var(--line);margin-top:5px;padding-top:7px;font-size:12.5px}
 .take .tot b{font-family:var(--disp);font-size:22px;color:var(--teal)}
+.runrate{border-top:1px dashed var(--line);margin-top:9px;padding-top:8px}
+.rrh{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.rr1{font-family:var(--mono);font-size:11px;color:var(--ice)}
+.rr1 b{color:var(--teal);font-weight:500}
+.rr2{font-size:11px;color:var(--muted);margin-top:3px}
+.moat{border-top:1px dashed var(--line);margin-top:9px;padding-top:8px;font-size:11.5px;color:var(--muted)}
+.moat b{color:var(--teal);font-weight:600}
 footer{margin-top:12px;padding:8px 2px 14px;border-top:1px solid var(--line);font-size:10.5px;color:var(--muted);
   display:flex;gap:14px;flex-wrap:wrap}
-/* modal */
+/* ---------- modal ---------- */
 .modal{position:fixed;inset:0;background:rgba(4,10,20,.72);display:none;align-items:center;justify-content:center;z-index:20}
 .modal.open{display:flex}
 .sheet{width:min(680px,94vw);background:var(--panel);border:1px solid var(--teal-dim);border-radius:12px;padding:18px 20px}
@@ -123,8 +199,20 @@ footer{margin-top:12px;padding:8px 2px 14px;border-top:1px solid var(--line);fon
 .sheet th{background:var(--panel2);font-family:var(--disp);letter-spacing:.06em;text-transform:uppercase;font-size:12.5px;color:#BFD6DF}
 .sheet td.num{font-family:var(--mono);text-align:right}
 .sheet .foot{margin-top:12px;display:flex;gap:8px;justify-content:flex-end}
-@media (max-width:1080px){.main{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.rail{flex-direction:column}}
-@media (prefers-reduced-motion:reduce){.dot{transition:none}}
+/* ---------- responsive ---------- */
+@media (max-width:1240px){.boardgrid{grid-template-columns:140px 210px 1fr;column-gap:18px}#roLane{font-size:21px}}
+@media (max-width:1080px){
+  .main{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr);grid-auto-flow:dense}
+  .tile.spread{grid-column:1/-1}
+  .metrics .tile:last-child{grid-column:span 2}
+  .revstrip{grid-template-columns:1fr}
+  .rml{max-width:none}
+  .rev .rh{display:none}
+  .board{overflow-x:auto}
+  .boardgrid{min-width:700px}
+}
+@media (prefers-reduced-motion:reduce){.dot{transition:none!important}#hub{transition:none}}
 </style>
 </head>
 <body>
@@ -133,69 +221,131 @@ footer{margin-top:12px;padding:8px 2px 14px;border-top:1px solid var(--line);fon
   <header>
     <div class="mark">
       <h1>TORRE<span>.</span></h1>
-      <div class="sub">The AI control tower for Latin America<br>orchestration layer · live routing view</div>
+      <div>
+        <div class="eyebrow">The AI control tower for Latin America</div>
+        <div class="vp">Every AI request from regulated clients, routed to the cheapest compliant model that can do the job.</div>
+      </div>
     </div>
     <span class="simbadge">SIMULATED · CLIENT-SIDE</span>
     <div class="hcontrols">
-      <span class="hlabel">Scenarios</span>
-      <button id="btnHike" class="warn" title="Part I — intelligence per dollar">Raise frontier prices +40%</button>
-      <button id="btnOutage" class="danger" title="Part IV — multi-provider resilience">US provider outage</button>
+      <span class="hlabel">Stress-test it</span>
+      <div class="scen">
+        <button id="btnHike" class="warn" title="Part I — intelligence per dollar">Raise frontier prices +40%</button>
+        <button id="btnOutage" class="danger" title="Part IV — multi-provider resilience">US provider outage</button>
+      </div>
+      <button id="btnTenant">+ Onboard tenant</button>
       <button id="btnReport">Generate CISO report</button>
-      <button id="btnPause">Pause</button>
-      <button id="btnSpeed">Speed 1×</button>
-      <button id="btnReset">Reset session</button>
+      <button id="btnPause" class="ghost">Pause</button>
+      <button id="btnSpeed" class="ghost">Speed 1×</button>
+      <button id="btnReset" class="ghost">Reset session</button>
     </div>
   </header>
 
   <section class="metrics" aria-label="Session metrics">
-    <div class="tile"><div class="k">Requests routed</div><div class="v" id="mReq">0</div><div class="s" id="mRate">0 / min</div></div>
-    <div class="tile"><div class="k">Gateway spend</div><div class="v" id="mSpend">$0.00</div><div class="s">actual, this session</div></div>
-    <div class="tile"><div class="k">Frontier-only baseline</div><div class="v" id="mBase">$0.00</div><div class="s">same traffic, no routing</div></div>
-    <div class="tile hero"><div class="k">Savings from routing</div><div class="v" id="mSave">0%</div><div class="s">intelligence per dollar</div></div>
-    <div class="tile"><div class="k">In-region share</div><div class="v" id="mReg">0%</div><div class="s">audit coverage: 100%</div></div>
+    <div class="tile"><div class="k">Work routed</div><div class="v" id="mReq">0</div><div class="s" id="mRate">0 / min</div></div>
+    <div class="tile hero spread">
+      <div class="k">The spread — what routing saves</div>
+      <div class="body">
+        <div class="bars">
+          <div class="brow base"><span class="bl">without Torre · all-frontier</span><span class="track"><i id="barBase" style="width:100%"></i></span><span class="bv" id="mBase">$0.00</span></div>
+          <div class="brow act"><span class="bl">with Torre</span><span class="track"><i id="barAct"></i></span><span class="bv" id="mSpend">$0.00</span></div>
+        </div>
+        <div class="pct"><div class="pv" id="mSave">0%</div><div class="s">clients keep the spread</div></div>
+      </div>
+    </div>
+    <div class="tile"><div class="k">Kept in-region</div><div class="v" id="mReg">0%</div><div class="s">100% of requests audit-logged</div></div>
+    <div class="tile"><div class="k">Operator revenue — session</div><div class="v" id="mTake">$0.00</div><div class="s">×600 demo clock · simulated</div></div>
+  </section>
+
+  <section class="revstrip" aria-label="Revenue model">
+    <div class="rml">Revenue model</div>
+    <div class="rev"><span class="num">01</span><div>
+      <div class="rt">Platform fee</div>
+      <div class="rd">every tenant pays $4,000/mo for the control tower · recurring contract revenue</div>
+      <div class="rh">→ operator economics, right rail</div>
+    </div></div>
+    <div class="rev"><span class="num">02</span><div>
+      <div class="rt">Usage margin</div>
+      <div class="rd">4% on every routed token · grows with adoption, near-zero marginal cost</div>
+      <div class="rh">→ operator economics, right rail</div>
+    </div></div>
+    <div class="rev"><span class="num">03</span><div>
+      <div class="rt">Sovereign capacity</div>
+      <div class="rd">residency demand converts to reserved in-country capacity contracts</div>
+      <div class="rh">→ capacity pipeline, right rail</div>
+    </div></div>
   </section>
 
   <div class="main">
 
-    <!-- POLICIES -->
-    <div class="card pol">
-      <h2>Policy <em>engine</em></h2>
-      <div class="toggle">
-        <div><div class="t">Cost optimization</div><div class="d">route to cheapest model clearing the quality bar</div></div>
-        <div class="sw on" id="swCost" role="switch" aria-checked="true" tabindex="0"></div>
-      </div>
-      <div class="toggle">
-        <div><div class="t">Enforce data residency</div><div class="d">PII workloads stay in-jurisdiction</div></div>
-        <div class="sw" id="swRes" role="switch" aria-checked="false" tabindex="0"></div>
-      </div>
-      <div class="slider">
-        <label>Frontier threshold — complexity <span class="val" id="thVal">3 of 3</span></label>
-        <input type="range" id="thSlide" min="1" max="3" value="3" step="1">
-        <div class="d" style="font-size:10.5px;color:var(--muted)">tasks at or above this complexity go to frontier models</div>
-      </div>
-      <div class="polnote">Every routing decision below is produced by these three controls — flip one and watch the runways change. Residency laws applied: LGPD (BR), Ley 25.326 (AR), LFPDPPP (MX), Ley 19.628 (CL), Ley 18.331 (UY).</div>
-    </div>
-
-    <!-- FLOWBOARD -->
+    <!-- FLOWBOARD: IN → HUB → OUT -->
     <div class="card board" id="board">
+      <svg id="wires" aria-hidden="true"></svg>
       <div class="banner" id="banner"></div>
       <div class="boardgrid">
+        <div class="zl">① Work comes in</div>
+        <div class="zl c"><b>→</b> ② Torre decides <b>→</b></div>
+        <div class="zl">③ Models out · replaceable plugs</div>
+
         <div class="tenants" id="tenants"></div>
+
+        <div class="hubcol">
+          <div id="hub">
+            <div class="hubname">TORRE ROUTER</div>
+            <div class="hubsub">every request passes through here · simulated</div>
+            <div id="readout">
+              <div id="roWho">Waiting for traffic</div>
+              <div id="roLane">—</div>
+              <div id="roWhy">routing decisions appear here, live</div>
+            </div>
+            <div id="crit">
+              <span data-c="cost">Cost</span><span data-c="residency">Residency</span><span data-c="complexity">Complexity</span><span data-c="failover">Failover</span><span data-c="audit">Audit</span>
+            </div>
+          </div>
+          <div id="polLink"></div>
+          <div class="polpanel">
+            <h2>Router <em>policy</em></h2>
+            <div class="polsub">these three switches produce every decision above</div>
+            <div class="toggle">
+              <div><div class="t">Cost optimization</div><div class="d">route to cheapest model clearing the quality bar</div></div>
+              <div class="sw on" id="swCost" role="switch" aria-checked="true" tabindex="0"></div>
+            </div>
+            <div class="toggle">
+              <div><div class="t">Enforce data residency</div><div class="d">PII workloads stay in-jurisdiction</div></div>
+              <div class="sw" id="swRes" role="switch" aria-checked="false" tabindex="0"></div>
+            </div>
+            <div class="slider">
+              <label>Frontier threshold — complexity <span class="val" id="thVal">3 of 3</span></label>
+              <input type="range" id="thSlide" min="1" max="3" value="3" step="1">
+              <div class="d" style="font-size:10.5px;color:var(--muted)">tasks at or above this complexity go to frontier models</div>
+            </div>
+            <div class="polnote" id="polNote">Residency laws applied: LGPD (BR), Ley 25.326 (AR), LFPDPPP (MX), Ley 19.628 (CL), Ley 18.331 (UY).</div>
+          </div>
+        </div>
+
         <div class="lanes">
           <div class="lane frontier" id="laneF">
-            <span class="tag out">OUTAGE</span><span class="tag hike" id="tagHike" style="display:none">+40%</span>
-            <div class="lh"><span class="nm">Frontier APIs · US</span><span class="rate" id="rateF">$12.00 / M tokens</span><span class="cnt" id="cntF">0</span></div>
-            <div class="desc">highest capability — used when the task genuinely needs it</div>
+            <div class="lh"><span class="nm">Frontier APIs · US</span>
+              <span class="tag out">OUTAGE</span><span class="tag hike" id="tagHike" style="display:none">+40%</span><span class="cnt" id="cntF">0%</span></div>
+            <div class="sub"><span id="rateF">$12.00 / M tokens</span> <span class="raw" id="rawF"></span></div>
+            <div class="desc">the hard ~20% — only when the task genuinely needs frontier reasoning</div>
             <div class="sharebar"><i id="barF"></i></div>
           </div>
           <div class="lane open" id="laneO">
-            <div class="lh"><span class="nm">Open-weight · in-region</span><span class="rate">$1.20 / M tokens</span><span class="cnt" id="cntO">0</span></div>
-            <div class="desc">the ~80% — cheapest model that clears the quality bar</div>
+            <div class="lh"><span class="nm">Open-weight · in-region</span>
+              <span class="tag maj" id="tagMaj">THE MAJORITY</span><span class="cnt" id="cntO">0%</span></div>
+            <div class="sub"><span>$1.20 / M tokens</span> <span class="raw" id="rawO"></span></div>
+            <div class="desc">the easy ~80% — cheapest model that clears the quality bar</div>
+            <div class="plugs">
+              <span>Llama 3.3</span><span>DeepSeek V3</span><span>Qwen 2.5</span><span>Kimi K2</span><span>Mistral</span>
+              <span class="more">+ swap any — models are plugs</span>
+            </div>
             <div class="sharebar"><i id="barO"></i></div>
           </div>
           <div class="lane sov" id="laneS">
-            <div class="lh"><span class="nm">Sovereign endpoints · certified fleet</span><span class="rate">$2.50 / M tokens</span><span class="cnt" id="cntS">0</span></div>
-            <div class="desc">residency-bound workloads — in-country, audit-logged, certified ops</div>
+            <div class="lh"><span class="nm">Sovereign endpoints · certified fleet</span><span class="cnt" id="cntS">0%</span></div>
+            <div class="sub"><span>$2.50 / M tokens</span> <span class="raw" id="rawS"></span></div>
+            <div class="desc">regulated data — never leaves the country, every call logged</div>
             <div class="sharebar"><i id="barS"></i></div>
           </div>
         </div>
@@ -205,18 +355,26 @@ footer{margin-top:12px;padding:8px 2px 14px;border-top:1px solid var(--line);fon
     <!-- RIGHT RAIL -->
     <div class="rail">
       <div class="card">
-        <h2>Audit <em>log</em> <span style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0;text-transform:none">every request · reviewable</span></h2>
+        <h2>Audit <em>log</em> <span class="h2sub">every request · reviewable</span></h2>
+        <div class="logsub">model, jurisdiction, policy reason and cost — logged for every request</div>
         <div class="log" id="log"></div>
       </div>
       <div class="card pipe">
-        <h2>Layer-2 <em>pipeline</em></h2>
-        <div id="pipe"><div class="empty">Workloads that repeatedly require in-region compute appear here — the demand map for sovereign capacity.</div></div>
+        <h2>Sovereign capacity <em>pipeline</em> <span class="h2sub">revenue line 03</span></h2>
+        <div id="pipe"><div class="empty">Workloads that repeatedly demand in-region compute surface here. Each is a candidate for a reserved sovereign-capacity contract — infrastructure revenue negotiated per workload, on top of routing.</div></div>
       </div>
       <div class="card take">
-        <h2>Operator <em>take</em></h2>
-        <div class="row2"><span>Platform fees (6 tenants × $4k/mo, prorated)</span><b id="tkPlat">$0.00</b></div>
-        <div class="row2"><span>Usage margin (4% of routed spend)</span><b id="tkUse">$0.00</b></div>
-        <div class="row2 tot"><span>Session total</span><b id="tkTot">$0.00</b></div>
+        <h2>Operator <em>economics</em> <span class="h2sub">live session + illustrative model</span></h2>
+        <div class="row2"><div><span>Platform fees</span><div class="rsub"><span id="nTen">6</span> tenants × $4,000/mo · ×600 demo clock</div></div><b id="tkPlat">$0.00</b></div>
+        <div class="row2"><div><span>Usage margin</span><div class="rsub">4% of routed spend</div></div><b id="tkUse">$0.00</b></div>
+        <div class="row2"><div><span>Capacity pipeline</span><div class="rsub">residency demand → reserved capacity</div></div><b id="tkPipe">0 candidates</b></div>
+        <div class="row2 tot"><span>Session revenue</span><b id="tkTot">$0.00</b></div>
+        <div class="runrate">
+          <div class="rrh">Run-rate at <span id="nTen2">6</span> tenants (illustrative)</div>
+          <div class="rr1"><b>$<span id="rrMrr">24,000</span> MRR</b> platform ≈ <b>$<span id="rrArr">288k</span> ARR</b> — before usage margin and capacity contracts</div>
+          <div class="rr2">Each added tenant: +$48k ARR platform fee at ~flat software cost. The constraint is trust, not code.</div>
+        </div>
+        <div class="moat"><b>Models are replaceable plugs; bank-grade trust is not.</b> Torre is the software — the moat is an operator who can sit across from a CISO and a data-protection authority in the same week, and this dashboard assumes that operator is you.</div>
       </div>
     </div>
   </div>
@@ -224,6 +382,7 @@ footer{margin-top:12px;padding:8px 2px 14px;border-top:1px solid var(--line);fon
   <footer>
     <span><b style="color:var(--ice)">TORRE</b> — working demo of the orchestration layer ("control tower") for regulated LatAm.</span>
     <span>All tenants, traffic, prices, certificates and revenue are <b style="color:var(--amber)">simulated client-side</b> for illustration.</span>
+    <span>Session revenue ticker runs a ×600 demo clock (1 minute ≈ 10 hours) so recurring fees are visible during a meeting.</span>
     <span>Rates and figures are illustrative, not quotes or forecasts.</span>
   </footer>
 </div>
@@ -237,7 +396,8 @@ footer{margin-top:12px;padding:8px 2px 14px;border-top:1px solid var(--line);fon
       <thead><tr><th>Jurisdiction</th><th>Requests</th><th>PII requests</th><th>PII in-region</th><th>All in-region</th></tr></thead>
       <tbody id="repBody"></tbody>
     </table>
-    <div class="meta" style="margin-top:10px">Audit coverage: 100% of requests logged with model, jurisdiction, policy reason and cost. Report reflects this simulated session only.</div>
+    <div class="meta" id="repEcon" style="margin-top:10px"></div>
+    <div class="meta" style="margin-top:6px">Audit coverage: 100% of requests logged with model, jurisdiction, policy reason and cost. Report reflects this simulated session only.</div>
     <div class="foot"><button id="btnCopy">Copy report</button><button id="btnClose">Close</button></div>
   </div>
 </div>
@@ -265,6 +425,7 @@ const WORK=[
  {w:"agent workflow",c:3,pii:false}
 ];
 const RATE={f:12.0,o:1.2,s:2.5};
+const PLAT_FEE=4000;
 /* ---------- state ---------- */
 const S={req:0,spend:0,base:0,lanes:{f:0,o:0,s:0},per:{},jur:{},seq:0,hike:false,outage:false,
  costOpt:true,res:false,th:3,paused:false,speed:1,t0:Date.now(),plat:0,pipe:{}};
@@ -272,15 +433,25 @@ window.__torre=S;
 /* ---------- els ---------- */
 const $=id=>document.getElementById(id);
 const els={req:$("mReq"),rate:$("mRate"),spend:$("mSpend"),base:$("mBase"),save:$("mSave"),reg:$("mReg"),
- cnt:{f:$("cntF"),o:$("cntO"),s:$("cntS")},bar:{f:$("barF"),o:$("barO"),s:$("barS")},
+ mTake:$("mTake"),barAct:$("barAct"),
+ cnt:{f:$("cntF"),o:$("cntO"),s:$("cntS")},raw:{f:$("rawF"),o:$("rawO"),s:$("rawS")},
+ bar:{f:$("barF"),o:$("barO"),s:$("barS")},tagMaj:$("tagMaj"),
  log:$("log"),pipe:$("pipe"),board:$("board"),banner:$("banner"),rateF:$("rateF"),tagHike:$("tagHike"),
- laneF:$("laneF"),tkPlat:$("tkPlat"),tkUse:$("tkUse"),tkTot:$("tkTot")};
+ laneF:$("laneF"),laneO:$("laneO"),laneS:$("laneS"),
+ hub:$("hub"),polLink:$("polLink"),roWho:$("roWho"),roLane:$("roLane"),roWhy:$("roWhy"),
+ wires:$("wires"),tkPlat:$("tkPlat"),tkUse:$("tkUse"),tkPipe:$("tkPipe"),tkTot:$("tkTot")};
+const LANE_META={
+ f:{color:"var(--amber)",glow:"rgba(227,179,65,.55)",label:()=>"→ FRONTIER · $"+frontierRate().toFixed(2)+"/M"},
+ o:{color:"var(--teal)",glow:"rgba(20,167,154,.65)",label:()=>"→ IN-REGION · $1.20/M"},
+ s:{color:"var(--blue)",glow:"rgba(95,184,255,.55)",label:()=>"→ SOVEREIGN · $2.50/M"}};
 /* tenants list */
 const tWrap=$("tenants");
-TENANTS.forEach((t,i)=>{const d=document.createElement("div");d.className="tenant";d.id="ten"+i;
- d.innerHTML='<div class="n">'+t.n+'</div><div class="j">'+t.j+' · '+t.law+'</div>';tWrap.appendChild(d);});
+function tenantCard(t,i){const d=document.createElement("div");d.className="tenant";d.id="ten"+i;
+ d.innerHTML='<div class="n">'+t.n+'</div><div class="j">'+t.j+' · '+t.law+'</div>';return d;}
+TENANTS.forEach((t,i)=>tWrap.appendChild(tenantCard(t,i)));
 /* ---------- helpers ---------- */
 const fmt$=v=>"$"+v.toFixed(2);
+const fmtCost=v=>v<0.01?"$"+v.toFixed(4):fmt$(v);
 const pct=v=>isFinite(v)?Math.round(v*100)+"%":"0%";
 let reduceMotion=false;
 try{reduceMotion=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){}
@@ -288,6 +459,43 @@ function frontierRate(){return S.hike?RATE.f*1.4:RATE.f;}
 function banner(msg,color){els.banner.textContent=msg;els.banner.style.display="block";
  els.banner.style.borderColor=color||"var(--teal)";clearTimeout(banner._t);
  banner._t=setTimeout(()=>els.banner.style.display="none",2600);}
+/* ---------- wires: the circuit ---------- */
+let hubPorts=[],wireEls={};
+function addPath(d,stroke,w){const p=document.createElementNS("http://www.w3.org/2000/svg","path");
+ p.setAttribute("d",d);p.setAttribute("stroke",stroke);p.setAttribute("stroke-width",w);
+ els.wires.appendChild(p);return p;}
+function drawWires(){
+ const brd=els.board.getBoundingClientRect();
+ if(!brd.width)return;
+ const hub=els.hub.getBoundingClientRect();
+ els.wires.innerHTML="";hubPorts=[];wireEls={};
+ const tens=tWrap.querySelectorAll(".tenant"),n=tens.length;
+ tens.forEach((el,i)=>{
+  const r=el.getBoundingClientRect();
+  const x0=r.right-brd.left,y0=r.top-brd.top+r.height/2;
+  const px=hub.left-brd.left-7,py=hub.top-brd.top+hub.height*(i+1)/(n+1);
+  hubPorts.push({x:px,y:py});
+  const mx=(x0+px)/2;
+  addPath("M"+x0+" "+y0+" C"+mx+" "+y0+","+mx+" "+py+","+px+" "+py,"rgba(217,230,236,.14)",1.5);
+ });
+ const lanes={f:els.laneF,o:els.laneO,s:els.laneS};
+ const strokes={f:"rgba(227,179,65,.30)",o:"rgba(20,167,154,.35)",s:"rgba(95,184,255,.30)"};
+ ["f","o","s"].forEach((k,i)=>{
+  const r=lanes[k].getBoundingClientRect();
+  const x1=r.left-brd.left,y1=r.top-brd.top+r.height/2;
+  const px=hub.right-brd.left+7,py=hub.top-brd.top+hub.height*(i+1)/4;
+  const mx=(px+x1)/2;
+  wireEls[k]=addPath("M"+px+" "+py+" C"+mx+" "+py+","+mx+" "+y1+","+x1+" "+y1,strokes[k],1.5);
+ });
+ syncWireState();
+}
+function syncWireState(){
+ ["f","o","s"].forEach(k=>{if(wireEls[k])wireEls[k].style.strokeWidth=(1.5+9*(S.lanes[k]/Math.max(S.req,1))).toFixed(2);});
+ if(wireEls.f){
+  if(S.outage){wireEls.f.setAttribute("stroke","rgba(227,101,101,.35)");wireEls.f.setAttribute("stroke-dasharray","4 6");}
+  else{wireEls.f.setAttribute("stroke","rgba(227,179,65,.30)");wireEls.f.removeAttribute("stroke-dasharray");}
+ }
+}
 /* ---------- routing (the whole thesis) ---------- */
 function route(t,w){
  if(S.res&&w.pii) return {lane:"s",why:"Residency · "+t.law};
@@ -298,6 +506,46 @@ function route(t,w){
  if(S.costOpt) return {lane:"o",why:"Cheapest clearing quality bar"};
  if(S.outage) return {lane:"o",why:"Failover · US outage"};
  return {lane:"f",why:"Default · frontier"};
+}
+/* ---------- hub readout + flash ---------- */
+let lastRo=0,roHoldUntil=0;
+function updateReadout(t,w,r){
+ const now=Date.now();
+ if(now<roHoldUntil||now-lastRo<300)return;
+ lastRo=now;
+ const m=LANE_META[r.lane];
+ els.roWho.textContent=t.n.toUpperCase()+" · "+w.w.toUpperCase();
+ els.roLane.textContent=m.label();
+ els.roLane.style.color=m.color;
+ els.roWhy.textContent=r.why;
+}
+const CRIT_MAP={Residency:"residency",Complexity:"complexity",Cheapest:"cost",Failover:"failover",Default:"cost"};
+function critLight(why,color){
+ const key=Object.keys(CRIT_MAP).find(k=>why.indexOf(k)===0);
+ const el=key?els.hub.querySelector('#crit [data-c="'+CRIT_MAP[key]+'"]'):null;
+ if(!el)return;
+ el.style.color=color;el.style.borderColor=color;
+ clearTimeout(el._t);el._t=setTimeout(()=>{el.style.color="";el.style.borderColor="";},400);
+}
+function hubFlash(r){
+ const m=LANE_META[r.lane];
+ critLight(r.why,m.color);
+ if(reduceMotion)return;
+ els.hub.style.borderColor=m.color;els.hub.style.boxShadow="0 0 30px "+m.glow;
+ clearTimeout(hubFlash._t);
+ hubFlash._t=setTimeout(()=>{els.hub.style.borderColor="";els.hub.style.boxShadow="";},300);
+}
+function policyPulse(shortLabel,msg){
+ roHoldUntil=Date.now()+1600;
+ els.roWho.textContent="ROUTER POLICY UPDATED";
+ els.roLane.textContent=shortLabel;
+ els.roLane.style.color="var(--teal)";
+ els.roWhy.textContent=msg;
+ els.polLink.classList.add("pulse");
+ if(!reduceMotion){els.hub.style.borderColor="var(--teal)";els.hub.style.boxShadow="0 0 30px rgba(20,167,154,.65)";}
+ clearTimeout(policyPulse._t);
+ policyPulse._t=setTimeout(()=>{els.polLink.classList.remove("pulse");
+  els.hub.style.borderColor="";els.hub.style.boxShadow="";},300);
 }
 /* ---------- commit + render ---------- */
 function commit(ti,t,w,r,tokens){
@@ -313,13 +561,13 @@ function commit(ti,t,w,r,tokens){
  addLog(t,w,r,cost);renderStats();
 }
 function addLog(t,w,r,cost){
- const colors={f:"var(--amber)",o:"var(--teal)",s:"#5FB8FF"};
+ const colors={f:"var(--amber)",o:"var(--teal)",s:"var(--blue)"};
  const row=document.createElement("div");row.className="row";
  row.innerHTML='<span class="seq">#'+String(S.seq).padStart(3,"0")+'</span>'+
   '<span class="ln" style="background:'+colors[r.lane]+'"></span>'+
   '<span class="who">'+t.n+'</span>'+
   '<span class="why">'+w.w+' — '+r.why+'</span>'+
-  '<span class="c">'+fmt$(cost)+'</span>';
+  '<span class="c">'+fmtCost(cost)+'</span>';
  els.log.prepend(row);
  while(els.log.children.length>32)els.log.lastChild.remove();
 }
@@ -328,7 +576,7 @@ function addPipe(t,w){
  if(els.pipe.children.length>=6)return;
  const est=(80+Math.round(Math.random()*160));
  const d=document.createElement("div");d.className="item";
- d.innerHTML="<b>"+t.n+"</b> · "+w.w+'<div class="m">recurring residency-bound demand · ~'+est+"k tok/day → sovereign capacity candidate</div>";
+ d.innerHTML="<b>"+t.n+"</b> · "+w.w+'<div class="m">recurring residency-bound demand · ~'+est+"k tok/day · reserved-capacity candidate</div>";
  els.pipe.appendChild(d);
 }
 function renderStats(){
@@ -338,33 +586,62 @@ function renderStats(){
  els.spend.textContent=fmt$(S.spend);
  els.base.textContent=fmt$(S.base);
  els.save.textContent=S.base>0?pct(1-S.spend/S.base):"0%";
+ els.barAct.style.width=S.base>0?Math.round(100*S.spend/S.base)+"%":"0%";
  const inr=(S.lanes.o+S.lanes.s)/Math.max(S.req,1);
  els.reg.textContent=pct(inr);
- ["f","o","s"].forEach(k=>{els.cnt[k].textContent=S.lanes[k];
-   els.bar[k].style.width=Math.round(100*S.lanes[k]/Math.max(S.req,1))+"%";});
- /* operator take */
- const months=(Date.now()-S.t0)/2.592e9;
- S.plat=6*4000*months*600; /* time-compressed for demo visibility */
+ ["f","o","s"].forEach(k=>{const share=Math.round(100*S.lanes[k]/Math.max(S.req,1));
+   els.cnt[k].textContent=share+"%";
+   els.raw[k].textContent="· "+S.lanes[k]+" req";
+   els.bar[k].style.width=share+"%";});
+ els.tagMaj.style.display=(S.lanes.o/Math.max(S.req,1))>=.5?"inline-block":"none";
+ syncWireState();
+ renderTake();
+}
+function renderTake(){
  const use=S.spend*0.04;
  els.tkPlat.textContent=fmt$(S.plat);
  els.tkUse.textContent=fmt$(use);
  els.tkTot.textContent=fmt$(S.plat+use);
+ els.mTake.textContent=fmt$(S.plat+use);
+ const nPipe=els.pipe.querySelectorAll(".item").length;
+ els.tkPipe.textContent=nPipe+(nPipe===1?" candidate":" candidates");
 }
-/* ---------- dot animation ---------- */
-function fly(ti,r,done){
- if(reduceMotion){done();return;}
+/* platform fees accrue tenant-by-tenant from the moment each is on the platform;
+   the clock stops while paused — no retroactive billing on onboarding */
+let lastPlatT=Date.now();
+setInterval(()=>{const now=Date.now();
+ if(!S.paused)S.plat+=TENANTS.length*PLAT_FEE*((now-lastPlatT)/2.592e9)*600; /* ×600 demo clock */
+ lastPlatT=now;renderTake();},500);
+function updateRunrate(){
+ const n=TENANTS.length,mrr=n*PLAT_FEE;
+ $("nTen").textContent=n;$("nTen2").textContent=n;
+ $("rrMrr").textContent=mrr.toLocaleString("en-US");
+ $("rrArr").textContent=Math.round(mrr*12/1000)+"k";
+}
+/* ---------- dot animation: two legs, recolor at the hub ---------- */
+let liveDots=0;
+function fly(ti,t,w,r,done){
  const brd=els.board.getBoundingClientRect();
- const from=document.getElementById("ten"+ti).getBoundingClientRect();
- const to=(r.lane==="f"?els.laneF:r.lane==="o"?$("laneO"):$("laneS")).getBoundingClientRect();
- if(!brd.width){done();return;}
- const dot=document.createElement("div");
- dot.className="dot"+(r.lane==="f"?" f":r.lane==="s"?" s":"");
- const x0=from.right-brd.left-4, y0=from.top-brd.top+from.height/2-4;
- const x1=to.left-brd.left+22+Math.random()*(to.width-60), y1=to.top-brd.top+to.height*0.62;
+ const from=document.getElementById("ten"+ti);
+ if(reduceMotion||liveDots>=12||!hubPorts[ti]||!from||!brd.width){
+   updateReadout(t,w,r);hubFlash(r);done();return;}
+ const fr=from.getBoundingClientRect();
+ const to=(r.lane==="f"?els.laneF:r.lane==="o"?els.laneO:els.laneS).getBoundingClientRect();
+ const fast=S.speed===3,leg=fast?220:380,hold=fast?80:140;
+ const dot=document.createElement("div");dot.className="dot n";
+ const x0=fr.right-brd.left-4,y0=fr.top-brd.top+fr.height/2-4;
+ const p=hubPorts[ti];
+ const x1=to.left-brd.left+22+Math.random()*(to.width-60),y1=to.top-brd.top+to.height*0.62;
+ dot.style.transition="transform "+leg+"ms cubic-bezier(.4,0,.6,1)";
  dot.style.transform="translate("+x0+"px,"+y0+"px)";
- els.board.appendChild(dot);
- requestAnimationFrame(()=>{requestAnimationFrame(()=>{dot.style.transform="translate("+x1+"px,"+y1+"px)";});});
- setTimeout(()=>{dot.remove();done();},700);
+ els.board.appendChild(dot);liveDots++;
+ requestAnimationFrame(()=>{requestAnimationFrame(()=>{
+   dot.style.transform="translate("+(p.x-4)+"px,"+(p.y-4)+"px)";});});
+ setTimeout(()=>{ /* hub arrival: the decision happens here */
+   dot.className="dot"+(r.lane==="f"?" f":r.lane==="s"?" s":"");
+   updateReadout(t,w,r);hubFlash(r);},leg);
+ setTimeout(()=>{dot.style.transform="translate("+x1+"px,"+y1+"px)";},leg+hold);
+ setTimeout(()=>{dot.remove();liveDots--;done();},leg*2+hold);
 }
 /* ---------- tick loop ---------- */
 function tick(){
@@ -373,42 +650,67 @@ function tick(){
  const t=TENANTS[ti], w=WORK[Math.floor(Math.random()*WORK.length)];
  const tokens=500+Math.floor(Math.random()*17500);
  const r=route(t,w);
- fly(ti,r,()=>commit(ti,t,w,r,tokens));
+ fly(ti,t,w,r,()=>commit(ti,t,w,r,tokens));
  schedule();
 }
 function schedule(){setTimeout(tick,(650+Math.random()*350)/S.speed);}
 schedule();
 /* ---------- controls ---------- */
-function bindSwitch(el,key,onMsg,offMsg){
+function bindSwitch(el,key,onState,offState){
  const flip=()=>{S[key]=!S[key];el.classList.toggle("on",S[key]);
   el.setAttribute("aria-checked",S[key]);
-  banner(S[key]?onMsg:offMsg);};
+  const st=S[key]?onState:offState;
+  policyPulse(st.label,st.msg);banner(st.msg);};
  el.addEventListener("click",flip);
  el.addEventListener("keydown",e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip();}});
 }
-bindSwitch($("swCost"),"costOpt","Cost optimization on — routing to cheapest model clearing quality","Cost optimization off — defaulting to frontier");
-bindSwitch($("swRes"),"res","Residency enforced — PII workloads now stay in-jurisdiction","Residency enforcement off");
-$("thSlide").addEventListener("input",e=>{S.th=+e.target.value;$("thVal").textContent=S.th+" of 3";});
+bindSwitch($("swCost"),"costOpt",
+ {label:"COST OPT ON",msg:"Cost optimization on — routing to cheapest model clearing quality"},
+ {label:"COST OPT OFF",msg:"Cost optimization off — defaulting to frontier"});
+bindSwitch($("swRes"),"res",
+ {label:"RESIDENCY ON",msg:"Residency enforced — PII workloads now stay in-jurisdiction"},
+ {label:"RESIDENCY OFF",msg:"Residency enforcement off"});
+$("thSlide").addEventListener("input",e=>{S.th=+e.target.value;$("thVal").textContent=S.th+" of 3";
+ policyPulse("THRESHOLD "+S.th+" OF 3","tasks at complexity ≥ "+S.th+" now go to frontier models");});
 $("btnHike").addEventListener("click",function(){S.hike=!S.hike;this.classList.toggle("active",S.hike);
  els.rateF.textContent="$"+frontierRate().toFixed(2)+" / M tokens";
  els.tagHike.style.display=S.hike?"inline-block":"none";
- banner(S.hike?"Frontier prices +40% — watch the savings tile":"Frontier prices back to list","var(--amber)");});
+ banner(S.hike?"Frontier prices +40% — watch the spread widen":"Frontier prices back to list","var(--amber)");});
 $("btnOutage").addEventListener("click",function(){S.outage=!S.outage;this.classList.toggle("active",S.outage);
  els.laneF.classList.toggle("outage",S.outage);
+ syncWireState();
  banner(S.outage?"US provider outage — traffic failing over, zero requests dropped":"US provider restored","var(--rose)");});
 $("btnPause").addEventListener("click",function(){S.paused=!S.paused;this.textContent=S.paused?"Resume":"Pause";this.classList.toggle("active",S.paused);});
 $("btnSpeed").addEventListener("click",function(){S.speed=S.speed===1?3:1;this.textContent="Speed "+S.speed+"×";this.classList.toggle("active",S.speed===3);});
 $("btnReset").addEventListener("click",()=>location.reload());
+/* ---------- onboard tenant: the growth beat ---------- */
+$("btnTenant").addEventListener("click",function(){
+ if(this.disabled)return;
+ TENANTS.push({n:"Coop. Norte",j:"CO",law:"Ley 1581"});
+ const i=TENANTS.length-1;
+ const card=tenantCard(TENANTS[i],i);card.classList.add("new");
+ tWrap.appendChild(card);
+ setTimeout(()=>card.classList.remove("new"),1800);
+ $("polNote").textContent="Residency laws applied: LGPD (BR), Ley 25.326 (AR), LFPDPPP (MX), Ley 19.628 (CL), Ley 18.331 (UY), Ley 1581 (CO).";
+ drawWires();updateRunrate();renderStats();
+ this.disabled=true;this.textContent="Coop. Norte onboarded";
+ banner("Coop. Norte onboarded — platform MRR +$4,000");
+});
 /* ---------- CISO report ---------- */
 const modal=$("modal");
+function econLine(){
+ return S.base>0?"Routing economics this session (simulated): "+fmt$(S.spend)+" routed spend vs "+
+  fmt$(S.base)+" frontier-only baseline — "+fmt$(S.base-S.spend)+" ("+pct(1-S.spend/S.base)+") saved by policy routing.":"";
+}
 $("btnReport").addEventListener("click",()=>{
  const b=$("repBody");b.innerHTML="";
- const order=["AR","BR","CL","MX","UY"];
+ const order=["AR","BR","CL","CO","MX","UY"];
  order.forEach(j=>{const r=S.jur[j];if(!r)return;
   b.insertAdjacentHTML("beforeend","<tr><td>"+j+"</td><td class='num'>"+r.req+"</td><td class='num'>"+r.pii+
    "</td><td class='num'>"+(r.pii?Math.round(100*r.piiIn/r.pii)+"%":"—")+
    "</td><td class='num'>"+Math.round(100*r.inr/r.req)+"%</td></tr>");});
  if(!b.children.length)b.innerHTML="<tr><td colspan='5'>No traffic yet — let the board run for a moment.</td></tr>";
+ $("repEcon").textContent=econLine();
  $("repMeta").textContent="simulated · generated "+new Date().toLocaleString();
  modal.classList.add("open");
 });
@@ -418,10 +720,15 @@ $("btnCopy").addEventListener("click",function(){
  let txt="TORRE — residency & audit summary (simulated session)\n";
  Object.entries(S.jur).forEach(([j,r])=>{txt+=j+": "+r.req+" req · PII "+r.pii+" · PII in-region "+
   (r.pii?Math.round(100*r.piiIn/r.pii)+"%":"—")+" · all in-region "+Math.round(100*r.inr/r.req)+"%\n";});
+ if(S.base>0)txt+=econLine()+"\n";
  txt+="Audit coverage: 100% of requests logged.";
  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt);this.textContent="Copied";
   setTimeout(()=>this.textContent="Copy report",1400);}
 });
+/* ---------- wire lifecycle ---------- */
+let rz;window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(drawWires,150);});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>drawWires());
+drawWires();updateRunrate();
 })();
 </script>
 </body>
