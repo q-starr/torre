@@ -41,6 +41,11 @@ header{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;border-bottom
 .mark .vp{font-family:var(--disp);font-weight:600;font-size:24px;line-height:1.08;color:#F2F8F4;max-width:640px}
 .simbadge{font-family:var(--mono);font-size:10.5px;color:var(--amber);border:1px solid rgba(227,179,65,.45);
   border-radius:4px;padding:2px 7px}
+.langtoggle{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;flex:0 0 auto}
+.langbtn{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);background:none;
+  border:none;padding:4px 8px;cursor:pointer;transition:color .15s,background .15s}
+.langbtn.active{color:var(--teal);background:var(--teal-soft)}
+.langbtn:not(.active):hover{color:var(--ice)}
 .hcontrols{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .hlabel{font-size:11px;color:var(--muted);text-transform:uppercase;margin-right:2px}
 .scen{display:flex;gap:8px;align-items:center;border:1px dashed var(--line);border-radius:8px;padding:4px 8px}
@@ -260,80 +265,84 @@ footer{margin-top:12px;padding:8px 2px 14px;border-top:1px solid var(--line);fon
     <div class="mark">
       <h1>TORRE<span>.</span></h1>
       <div>
-        <div class="eyebrow">The AI control tower for Latin America</div>
-        <div class="vp">Every AI request from regulated clients, routed to the cheapest compliant model that can do the job.</div>
+        <div class="eyebrow" data-i18n="eyebrow">The AI control tower for Latin America</div>
+        <div class="vp" data-i18n="vp">Every AI request from regulated clients, routed to the cheapest compliant model that can do the job.</div>
       </div>
     </div>
-    <span class="simbadge">SIMULATED · CLIENT-SIDE</span>
+    <span class="simbadge" data-i18n="simbadge">SIMULATED · CLIENT-SIDE</span>
     <div class="hcontrols">
-      <span class="hlabel">Stress-test it</span>
+      <span class="hlabel" data-i18n="hlabel">Stress-test it</span>
       <div class="scen">
-        <button id="btnHike" class="warn" title="Part I — intelligence per dollar">Raise frontier prices +40%</button>
-        <button id="btnOutage" class="danger" title="Part IV — multi-provider resilience">US provider outage</button>
+        <button id="btnHike" class="warn" data-i18n="btnHike">Raise frontier prices +40%</button>
+        <button id="btnOutage" class="danger" data-i18n="btnOutage">US provider outage</button>
       </div>
-      <button id="btnTenant">+ Onboard tenant</button>
-      <button id="btnReport">Generate CISO report</button>
-      <button id="btnPause" class="ghost">Pause</button>
+      <button id="btnTenant" data-i18n="btnTenant">+ Onboard tenant</button>
+      <button id="btnReport" data-i18n="btnReport">Generate CISO report</button>
+      <button id="btnPause" class="ghost" data-i18n="btnPause">Pause</button>
       <button id="btnSpeed" class="ghost">Speed 1×</button>
-      <button id="btnReset" class="ghost">Reset session</button>
+      <button id="btnReset" class="ghost" data-i18n="btnReset">Reset session</button>
+      <div class="langtoggle" role="group" aria-label="Language / Idioma">
+        <button type="button" class="langbtn active" data-lang="en">EN</button>
+        <button type="button" class="langbtn" data-lang="es">ES</button>
+      </div>
     </div>
   </header>
 
   <section class="mission" aria-label="Torre message">
     <div class="mission-main">
-      <div class="mission-k">What Torre sells</div>
-      <h2>One governed route for every AI request.</h2>
-      <p>Regulated teams want cheaper open models, local residency, and a clean audit trail. Torre is the policy layer between tenants and model providers: every request is priced, checked, routed, and logged before it reaches a model.</p>
+      <div class="mission-k" data-i18n="missionK">What Torre sells</div>
+      <h2 data-i18n="missionH">One governed route for every AI request.</h2>
+      <p data-i18n="missionP">Regulated teams want cheaper open models, local residency, and a clean audit trail. Torre is the policy layer between tenants and model providers: every request is priced, checked, routed, and logged before it reaches a model.</p>
     </div>
     <div class="mission-point">
       <span class="num">01</span>
-      <strong>Lower AI unit cost</strong>
-      <p>Most work moves off frontier APIs when an open in-region model clears the quality bar.</p>
+      <strong data-i18n="mp1t">Lower AI unit cost</strong>
+      <p data-i18n="mp1p">Most work moves off frontier APIs when an open in-region model clears the quality bar.</p>
     </div>
     <div class="mission-point">
       <span class="num">02</span>
-      <strong>Compliance by default</strong>
-      <p>PII and regulated workloads can stay in-jurisdiction with an audit log for every call.</p>
+      <strong data-i18n="mp2t">Compliance by default</strong>
+      <p data-i18n="mp2p">PII and regulated workloads can stay in-jurisdiction with an audit log for every call.</p>
     </div>
     <div class="mission-point">
       <span class="num">03</span>
-      <strong>Operator revenue</strong>
-      <p>Platform fees, token margin, and sovereign capacity demand all surface in one control plane.</p>
+      <strong data-i18n="mp3t">Operator revenue</strong>
+      <p data-i18n="mp3p">Platform fees, token margin, and sovereign capacity demand all surface in one control plane.</p>
     </div>
   </section>
 
   <section class="metrics" aria-label="Session metrics">
-    <div class="tile"><div class="k">Live requests routed</div><div class="v" id="mReq">0</div><div class="s" id="mRate">0 / min</div></div>
+    <div class="tile"><div class="k" data-i18n="tReq">Live requests routed</div><div class="v" id="mReq">0</div><div class="s" id="mRate">0 / min</div></div>
     <div class="tile hero spread">
-      <div class="k">Savings vs all-frontier baseline</div>
+      <div class="k" data-i18n="tSpread">Savings vs all-frontier baseline</div>
       <div class="body">
         <div class="bars">
-          <div class="brow base"><span class="bl">without Torre · all-frontier</span><span class="track"><i id="barBase" style="width:100%"></i></span><span class="bv" id="mBase">$0.00</span></div>
-          <div class="brow act"><span class="bl">with Torre</span><span class="track"><i id="barAct"></i></span><span class="bv" id="mSpend">$0.00</span></div>
+          <div class="brow base"><span class="bl" data-i18n="blBase">without Torre · all-frontier</span><span class="track"><i id="barBase" style="width:100%"></i></span><span class="bv" id="mBase">$0.00</span></div>
+          <div class="brow act"><span class="bl" data-i18n="blAct">with Torre</span><span class="track"><i id="barAct"></i></span><span class="bv" id="mSpend">$0.00</span></div>
         </div>
-        <div class="pct"><div class="pv" id="mSave">0%</div><div class="s">spread captured by policy</div></div>
+        <div class="pct"><div class="pv" id="mSave">0%</div><div class="s" data-i18n="sSpread">spread captured by policy</div></div>
       </div>
     </div>
-    <div class="tile"><div class="k">In-region routing</div><div class="v" id="mReg">0%</div><div class="s">100% of requests audit-logged</div></div>
-    <div class="tile"><div class="k">Operator revenue</div><div class="v" id="mTake">$0.00</div><div class="s">session model · simulated</div></div>
+    <div class="tile"><div class="k" data-i18n="tReg">In-region routing</div><div class="v" id="mReg">0%</div><div class="s" data-i18n="sReg">100% of requests audit-logged</div></div>
+    <div class="tile"><div class="k" data-i18n="tTake">Operator revenue</div><div class="v" id="mTake">$0.00</div><div class="s" data-i18n="sTake">session model · simulated</div></div>
   </section>
 
   <section class="revstrip" aria-label="Revenue model">
-    <div class="rml">How it monetizes</div>
+    <div class="rml" data-i18n="rml">How it monetizes</div>
     <div class="rev"><span class="num">01</span><div>
-      <div class="rt">Platform fee</div>
-      <div class="rd">every tenant pays $4,000/mo for governed routing and auditability</div>
-      <div class="rh">→ operator economics, right rail</div>
+      <div class="rt" data-i18n="rt1">Platform fee</div>
+      <div class="rd" data-i18n="rd1">every tenant pays $4,000/mo for governed routing and auditability</div>
+      <div class="rh" data-i18n="rh1">→ operator economics, right rail</div>
     </div></div>
     <div class="rev"><span class="num">02</span><div>
-      <div class="rt">Usage margin</div>
-      <div class="rd">4% on routed token spend · grows with adoption at software margins</div>
-      <div class="rh">→ operator economics, right rail</div>
+      <div class="rt" data-i18n="rt2">Usage margin</div>
+      <div class="rd" data-i18n="rd2">4% on routed token spend · grows with adoption at software margins</div>
+      <div class="rh" data-i18n="rh2">→ operator economics, right rail</div>
     </div></div>
     <div class="rev"><span class="num">03</span><div>
-      <div class="rt">Sovereign capacity</div>
-      <div class="rd">repeated residency demand becomes reserved in-country capacity contracts</div>
-      <div class="rh">→ capacity pipeline, right rail</div>
+      <div class="rt" data-i18n="rt3">Sovereign capacity</div>
+      <div class="rd" data-i18n="rd3">repeated residency demand becomes reserved in-country capacity contracts</div>
+      <div class="rh" data-i18n="rh3">→ capacity pipeline, right rail</div>
     </div></div>
   </section>
 
@@ -344,69 +353,69 @@ footer{margin-top:12px;padding:8px 2px 14px;border-top:1px solid var(--line);fon
       <svg id="wires" aria-hidden="true"></svg>
       <div class="banner" id="banner"></div>
       <div class="boardgrid">
-        <div class="zl" id="zlIn">① Work comes in</div>
-        <div class="zl c" id="zlHub"><b>→</b> ② Torre decides <b>→</b></div>
-        <div class="zl" id="zlOut">③ Models out · replaceable plugs</div>
+        <div class="zl" id="zlIn" data-i18n="zlIn">① Work comes in</div>
+        <div class="zl c" id="zlHub" data-i18n="zlHub"><b>→</b> ② Torre decides <b>→</b></div>
+        <div class="zl" id="zlOut" data-i18n="zlOut">③ Models out · replaceable plugs</div>
 
         <div class="tenants" id="tenants"></div>
 
         <div class="hubcol">
           <div id="hub">
             <div class="hubname">TORRE ROUTER</div>
-            <div class="hubsub">every request passes through here · simulated</div>
+            <div class="hubsub" data-i18n="hubsub">every request passes through here · simulated</div>
             <div id="readout">
-              <div id="roWho">Waiting for traffic</div>
+              <div id="roWho" data-i18n="roWho">Waiting for traffic</div>
               <div id="roLane">—</div>
-              <div id="roWhy">routing decisions appear here, live</div>
+              <div id="roWhy" data-i18n="roWhy">routing decisions appear here, live</div>
             </div>
             <div id="crit">
-              <span data-c="cost">Cost</span><span data-c="residency">Residency</span><span data-c="complexity">Complexity</span><span data-c="failover">Failover</span><span data-c="audit">Audit</span>
+              <span data-c="cost" data-i18n="critCost">Cost</span><span data-c="residency" data-i18n="critRes">Residency</span><span data-c="complexity" data-i18n="critCx">Complexity</span><span data-c="failover" data-i18n="critFo">Failover</span><span data-c="audit" data-i18n="critAu">Audit</span>
             </div>
           </div>
           <div id="polLink"></div>
           <div class="polpanel">
-            <h2>Router <em>policy</em></h2>
-            <div class="polsub">these three switches produce every decision above</div>
+            <h2 data-i18n="polH">Router <em>policy</em></h2>
+            <div class="polsub" data-i18n="polsub">these three switches produce every decision above</div>
             <div class="toggle">
-              <div><div class="t">Cost optimization</div><div class="d">route to cheapest model clearing the quality bar</div></div>
+              <div><div class="t" data-i18n="swCostT">Cost optimization</div><div class="d" data-i18n="swCostD">route to cheapest model clearing the quality bar</div></div>
               <div class="sw on" id="swCost" role="switch" aria-checked="true" tabindex="0"></div>
             </div>
             <div class="toggle">
-              <div><div class="t">Enforce data residency</div><div class="d">PII workloads stay in-jurisdiction</div></div>
+              <div><div class="t" data-i18n="swResT">Enforce data residency</div><div class="d" data-i18n="swResD">PII workloads stay in-jurisdiction</div></div>
               <div class="sw" id="swRes" role="switch" aria-checked="false" tabindex="0"></div>
             </div>
             <div class="slider">
-              <label>Frontier threshold — complexity <span class="val" id="thVal">3 of 3</span></label>
+              <label><span data-i18n="thLabel">Frontier threshold — complexity</span> <span class="val" id="thVal">3 of 3</span></label>
               <input type="range" id="thSlide" min="1" max="3" value="3" step="1">
-              <div class="d" style="font-size:10.5px;color:var(--muted)">tasks at or above this complexity go to frontier models</div>
+              <div class="d" style="font-size:10.5px;color:var(--muted)" data-i18n="thHint">tasks at or above this complexity go to frontier models</div>
             </div>
-            <div class="polnote" id="polNote">Residency laws applied: LGPD (BR), Ley 25.326 (AR), LFPDPPP (MX), Ley 19.628 (CL), Ley 18.331 (UY).</div>
+            <div class="polnote" id="polNote" data-i18n="polNote">Residency laws applied: LGPD (BR), Ley 25.326 (AR), LFPDPPP (MX), Ley 19.628 (CL), Ley 18.331 (UY).</div>
           </div>
         </div>
 
         <div class="lanes">
           <div class="lane frontier" id="laneF">
-            <div class="lh"><span class="nm">Frontier APIs · US</span>
-              <span class="tag out">OUTAGE</span><span class="tag hike" id="tagHike" style="display:none">+40%</span><span class="cnt" id="cntF">0%</span></div>
+            <div class="lh"><span class="nm" data-i18n="laneFnm">Frontier APIs · US</span>
+              <span class="tag out" data-i18n="tagOut">OUTAGE</span><span class="tag hike" id="tagHike" style="display:none">+40%</span><span class="cnt" id="cntF">0%</span></div>
             <div class="sub"><span id="rateF">$12.00 / M tokens</span> <span class="raw" id="rawF"></span></div>
-            <div class="desc">the hard ~20% — only when the task genuinely needs frontier reasoning</div>
+            <div class="desc" data-i18n="laneFd">the hard ~20% — only when the task genuinely needs frontier reasoning</div>
             <div class="sharebar"><i id="barF"></i></div>
           </div>
           <div class="lane open" id="laneO">
-            <div class="lh"><span class="nm">Open-weight · in-region</span>
-              <span class="tag maj" id="tagMaj">THE MAJORITY</span><span class="cnt" id="cntO">0%</span></div>
+            <div class="lh"><span class="nm" data-i18n="laneOnm">Open-weight · in-region</span>
+              <span class="tag maj" id="tagMaj" data-i18n="tagMaj">THE MAJORITY</span><span class="cnt" id="cntO">0%</span></div>
             <div class="sub"><span>$1.20 / M tokens</span> <span class="raw" id="rawO"></span></div>
-            <div class="desc">the easy ~80% — cheapest model that clears the quality bar</div>
+            <div class="desc" data-i18n="laneOd">the easy ~80% — cheapest model that clears the quality bar</div>
             <div class="plugs">
               <span>Llama 3.3</span><span>DeepSeek V3</span><span>Qwen 2.5</span><span>Kimi K2</span><span>Mistral</span>
-              <span class="more">+ swap any — models are plugs</span>
+              <span class="more" data-i18n="plugsMore">+ swap any — models are plugs</span>
             </div>
             <div class="sharebar"><i id="barO"></i></div>
           </div>
           <div class="lane sov" id="laneS">
-            <div class="lh"><span class="nm">Sovereign endpoints · certified fleet</span><span class="cnt" id="cntS">0%</span></div>
+            <div class="lh"><span class="nm" data-i18n="laneSnm">Sovereign endpoints · certified fleet</span><span class="cnt" id="cntS">0%</span></div>
             <div class="sub"><span>$2.50 / M tokens</span> <span class="raw" id="rawS"></span></div>
-            <div class="desc">regulated data — never leaves the country, every call logged</div>
+            <div class="desc" data-i18n="laneSd">regulated data — never leaves the country, every call logged</div>
             <div class="sharebar"><i id="barS"></i></div>
           </div>
         </div>
@@ -416,56 +425,158 @@ footer{margin-top:12px;padding:8px 2px 14px;border-top:1px solid var(--line);fon
     <!-- RIGHT RAIL -->
     <div class="rail">
       <div class="card">
-        <h2>Audit <em>log</em> <span class="h2sub">every request · reviewable</span></h2>
-        <div class="logsub">model, jurisdiction, policy reason and cost — logged for every request</div>
+        <h2 data-i18n="logH">Audit <em>log</em> <span class="h2sub">every request · reviewable</span></h2>
+        <div class="logsub" data-i18n="logsub">model, jurisdiction, policy reason and cost — logged for every request</div>
         <div class="log" id="log"></div>
       </div>
       <div class="card pipe">
-        <h2>Sovereign capacity <em>pipeline</em> <span class="h2sub">revenue line 03</span></h2>
-        <div id="pipe"><div class="empty">Workloads that repeatedly demand in-region compute surface here. Each is a candidate for a reserved sovereign-capacity contract — infrastructure revenue negotiated per workload, on top of routing.</div></div>
+        <h2 data-i18n="pipeH">Sovereign capacity <em>pipeline</em> <span class="h2sub">revenue line 03</span></h2>
+        <div id="pipe"><div class="empty" data-i18n="pipeEmpty">Workloads that repeatedly demand in-region compute surface here. Each is a candidate for a reserved sovereign-capacity contract — infrastructure revenue negotiated per workload, on top of routing.</div></div>
       </div>
       <div class="card take">
-        <h2>Operator <em>economics</em> <span class="h2sub">live session + illustrative model</span></h2>
-        <div class="row2"><div><span>Platform fees</span><div class="rsub"><span id="nTen">6</span> tenants × $4,000/mo · ×600 demo clock</div></div><b id="tkPlat">$0.00</b></div>
-        <div class="row2"><div><span>Usage margin</span><div class="rsub">4% of routed spend</div></div><b id="tkUse">$0.00</b></div>
-        <div class="row2"><div><span>Capacity pipeline</span><div class="rsub">residency demand → reserved capacity</div></div><b id="tkPipe">0 candidates</b></div>
-        <div class="row2 tot"><span>Session revenue</span><b id="tkTot">$0.00</b></div>
+        <h2 data-i18n="econH">Operator <em>economics</em> <span class="h2sub">live session + illustrative model</span></h2>
+        <div class="row2"><div><span data-i18n="ecPlat">Platform fees</span><div class="rsub"><span id="nTen">6</span> <span data-i18n="ecPlatSub">tenants × $4,000/mo · ×600 demo clock</span></div></div><b id="tkPlat">$0.00</b></div>
+        <div class="row2"><div><span data-i18n="ecUse">Usage margin</span><div class="rsub" data-i18n="ecUseSub">4% of routed spend</div></div><b id="tkUse">$0.00</b></div>
+        <div class="row2"><div><span data-i18n="ecPipe">Capacity pipeline</span><div class="rsub" data-i18n="ecPipeSub">residency demand → reserved capacity</div></div><b id="tkPipe">0 candidates</b></div>
+        <div class="row2 tot"><span data-i18n="ecTot">Session revenue</span><b id="tkTot">$0.00</b></div>
         <div class="runrate">
-          <div class="rrh">Run-rate at <span id="nTen2">6</span> tenants (illustrative)</div>
-          <div class="rr1"><b>$<span id="rrMrr">24,000</span> MRR</b> platform ≈ <b>$<span id="rrArr">288k</span> ARR</b> — before usage margin and capacity contracts</div>
-          <div class="rr2">Each added tenant: +$48k ARR platform fee at ~flat software cost. The constraint is trust, not code.</div>
+          <div class="rrh"><span data-i18n="rrhA">Run-rate at</span> <span id="nTen2">6</span> <span data-i18n="rrhB">tenants (illustrative)</span></div>
+          <div class="rr1" data-i18n="rr1"><b>$<span id="rrMrr">24,000</span> MRR</b> platform ≈ <b>$<span id="rrArr">288k</span> ARR</b> — before usage margin and capacity contracts</div>
+          <div class="rr2" data-i18n="rr2">Each added tenant: +$48k ARR platform fee at ~flat software cost. The constraint is trust, not code.</div>
         </div>
-        <div class="moat"><b>Models are replaceable plugs; bank-grade trust is not.</b> Torre is the software — the moat is an operator who can sit across from a CISO and a data-protection authority in the same week, and this dashboard assumes that operator is you.</div>
+        <div class="moat" data-i18n="moat"><b>Models are replaceable plugs; bank-grade trust is not.</b> Torre is the software — the moat is an operator who can sit across from a CISO and a data-protection authority in the same week, and this dashboard assumes that operator is you.</div>
       </div>
     </div>
   </div>
 
   <footer>
-    <span><b style="color:var(--ice)">TORRE</b> — working demo of the orchestration layer ("control tower") for regulated LatAm.</span>
-    <span>All tenants, traffic, prices, certificates and revenue are <b style="color:var(--amber)">simulated client-side</b> for illustration.</span>
-    <span>Session revenue ticker runs a ×600 demo clock (1 minute ≈ 10 hours) so recurring fees are visible during a meeting.</span>
-    <span>Rates and figures are illustrative, not quotes or forecasts.</span>
+    <span data-i18n="foot1"><b style="color:var(--ice)">TORRE</b> — working demo of the orchestration layer ("control tower") for regulated LatAm.</span>
+    <span data-i18n="foot2">All tenants, traffic, prices, certificates and revenue are <b style="color:var(--amber)">simulated client-side</b> for illustration.</span>
+    <span data-i18n="foot3">Session revenue ticker runs a ×600 demo clock (1 minute ≈ 10 hours) so recurring fees are visible during a meeting.</span>
+    <span data-i18n="foot4">Rates and figures are illustrative, not quotes or forecasts.</span>
   </footer>
 </div>
 
 <!-- CISO REPORT MODAL -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="repTitle">
   <div class="sheet">
-    <h3 id="repTitle">Residency &amp; audit summary</h3>
+    <h3 id="repTitle" data-i18n="repTitle">Residency &amp; audit summary</h3>
     <div class="meta" id="repMeta">simulated · generated —</div>
     <div class="twrap"><table>
-      <thead><tr><th>Jurisdiction</th><th>Requests</th><th>PII requests</th><th>PII in-region</th><th>All in-region</th></tr></thead>
+      <thead><tr><th data-i18n="thJur">Jurisdiction</th><th data-i18n="thReq">Requests</th><th data-i18n="thPii">PII requests</th><th data-i18n="thPiiIn">PII in-region</th><th data-i18n="thAllIn">All in-region</th></tr></thead>
       <tbody id="repBody"></tbody>
     </table></div>
     <div class="meta" id="repEcon" style="margin-top:10px"></div>
-    <div class="meta" style="margin-top:6px">Audit coverage: 100% of requests logged with model, jurisdiction, policy reason and cost. Report reflects this simulated session only.</div>
-    <div class="foot"><button id="btnCopy">Copy report</button><button id="btnClose">Close</button></div>
+    <div class="meta" style="margin-top:6px" data-i18n="repCov">Audit coverage: 100% of requests logged with model, jurisdiction, policy reason and cost. Report reflects this simulated session only.</div>
+    <div class="foot"><button id="btnCopy" data-i18n="btnCopy">Copy report</button><button id="btnClose" data-i18n="btnClose">Close</button></div>
   </div>
 </div>
 
 <script>
 (function(){
 "use strict";
+/* ---------- i18n ---------- English lives in the markup; Spanish lives here.
+   Money stays en-US formatted in both (these are USD figures). */
+let LANG=localStorage.getItem("torre_lang")||"en";
+const tx=(en,es)=>LANG==="es"?es:en;
+const I18N={es:{
+ eyebrow:"La torre de control de IA para América Latina",
+ vp:"Cada request de IA de clientes regulados, ruteado al modelo más barato que cumple y que puede hacer el trabajo.",
+ simbadge:"SIMULADO · EN EL NAVEGADOR",
+ hlabel:"Ponelo a prueba",
+ btnHike:"Subir precios frontier +40%",
+ btnOutage:"Caída de proveedor en EE.UU.",
+ btnTenant:"+ Sumar cliente",
+ btnReport:"Generar informe para el CISO",
+ btnPause:"Pausar",
+ btnReset:"Reiniciar sesión",
+
+ missionK:"Qué vende Torre",
+ missionH:"Una sola ruta gobernada para cada request de IA.",
+ missionP:"Los equipos regulados quieren modelos abiertos más baratos, residencia local y una traza de auditoría limpia. Torre es la capa de política entre los clientes y los proveedores de modelos: cada request se tarifa, se controla, se rutea y se registra antes de llegar a un modelo.",
+ mp1t:"Menor costo unitario de IA",
+ mp1p:"La mayor parte del trabajo sale de las APIs frontier cuando un modelo abierto en la región cumple la barra de calidad.",
+ mp2t:"Cumplimiento por defecto",
+ mp2p:"Los datos personales y las cargas reguladas pueden quedarse en la jurisdicción, con registro de auditoría en cada llamada.",
+ mp3t:"Ingresos del operador",
+ mp3p:"Fees de plataforma, margen sobre tokens y demanda de capacidad soberana afloran en un solo panel de control.",
+
+ tReq:"Requests ruteados en vivo",
+ tSpread:"Ahorro contra una base todo-frontier",
+ blBase:"sin Torre · todo frontier",
+ blAct:"con Torre",
+ sSpread:"del spread capturado por la política",
+ tReg:"Ruteo dentro de la región",
+ sReg:"100% de los requests auditados",
+ tTake:"Ingresos del operador",
+ sTake:"modelo de sesión · simulado",
+
+ rml:"Cómo monetiza",
+ rt1:"Fee de plataforma",
+ rd1:"cada cliente paga $4.000/mes por ruteo gobernado y auditabilidad",
+ rh1:"→ economía del operador, columna derecha",
+ rt2:"Margen por uso",
+ rd2:"4% sobre el gasto ruteado en tokens · crece con la adopción, con márgenes de software",
+ rh2:"→ economía del operador, columna derecha",
+ rt3:"Capacidad soberana",
+ rd3:"la demanda repetida de residencia se convierte en contratos de capacidad reservada en el país",
+ rh3:"→ pipeline de capacidad, columna derecha",
+
+ zlIn:"① Entra el trabajo",
+ zlHub:"<b>→</b> ② Torre decide <b>→</b>",
+ zlOut:"③ Salen los modelos · enchufes reemplazables",
+ hubsub:"cada request pasa por acá · simulado",
+ roWho:"Esperando tráfico",
+ roWhy:"las decisiones de ruteo aparecen acá, en vivo",
+ critCost:"Costo", critRes:"Residencia", critCx:"Complejidad", critFo:"Failover", critAu:"Auditoría",
+
+ polH:"Política del <em>router</em>",
+ polsub:"estos tres controles producen cada decisión de arriba",
+ swCostT:"Optimización de costo",
+ swCostD:"rutear al modelo más barato que cumpla la barra de calidad",
+ swResT:"Forzar residencia de datos",
+ swResD:"las cargas con datos personales se quedan en la jurisdicción",
+ thLabel:"Umbral de frontier — complejidad",
+ thHint:"las tareas con esta complejidad o más van a modelos frontier",
+ polNote:"Leyes de residencia aplicadas: LGPD (BR), Ley 25.326 (AR), LFPDPPP (MX), Ley 19.628 (CL), Ley 18.331 (UY).",
+
+ laneFnm:"APIs frontier · EE.UU.",
+ tagOut:"CAÍDA",
+ laneFd:"el ~20% difícil — solo cuando la tarea realmente necesita razonamiento frontier",
+ laneOnm:"Peso abierto · en la región",
+ tagMaj:"LA MAYORÍA",
+ laneOd:"el ~80% fácil — el modelo más barato que cumple la barra de calidad",
+ plugsMore:"+ cambiá cualquiera — los modelos son enchufes",
+ laneSnm:"Endpoints soberanos · flota certificada",
+ laneSd:"datos regulados — nunca salen del país, cada llamada registrada",
+
+ logH:"Registro de <em>auditoría</em> <span class=\"h2sub\">cada request · revisable</span>",
+ logsub:"modelo, jurisdicción, motivo de política y costo — registrados en cada request",
+ pipeH:"<em>Pipeline</em> de capacidad soberana <span class=\"h2sub\">línea de ingreso 03</span>",
+ pipeEmpty:"Las cargas que piden cómputo en la región de forma repetida aparecen acá. Cada una es candidata a un contrato de capacidad soberana reservada — ingreso de infraestructura negociado por carga, además del ruteo.",
+ econH:"<em>Economía</em> del operador <span class=\"h2sub\">sesión en vivo + modelo ilustrativo</span>",
+ ecPlat:"Fees de plataforma",
+ ecPlatSub:"clientes × $4.000/mes · reloj demo ×600",
+ ecUse:"Margen por uso",
+ ecUseSub:"4% del gasto ruteado",
+ ecPipe:"Pipeline de capacidad",
+ ecPipeSub:"demanda de residencia → capacidad reservada",
+ ecTot:"Ingreso de la sesión",
+ rrhA:"Run-rate con", rrhB:"clientes (ilustrativo)",
+ rr1:"<b>$<span id=\"rrMrr\">24,000</span> MRR</b> de plataforma ≈ <b>$<span id=\"rrArr\">288k</span> ARR</b> — antes del margen por uso y los contratos de capacidad",
+ rr2:"Cada cliente que se suma: +$48k de ARR en fee de plataforma, con costo de software casi plano. La restricción es la confianza, no el código.",
+ moat:"<b>Los modelos son enchufes reemplazables; la confianza de nivel bancario, no.</b> Torre es el software — el foso es un operador que puede sentarse frente a un CISO y a una autoridad de protección de datos en la misma semana, y este panel asume que ese operador sos vos.",
+
+ foot1:"<b style=\"color:var(--ice)\">TORRE</b> — demo funcional de la capa de orquestación (\"torre de control\") para LatAm regulada.",
+ foot2:"Todos los clientes, el tráfico, los precios, los certificados y los ingresos están <b style=\"color:var(--amber)\">simulados en el navegador</b> con fines ilustrativos.",
+ foot3:"El contador de ingresos corre con un reloj demo ×600 (1 minuto ≈ 10 horas) para que los fees recurrentes se vean durante una reunión.",
+ foot4:"Las tarifas y cifras son ilustrativas, no cotizaciones ni pronósticos.",
+
+ repTitle:"Resumen de residencia y auditoría",
+ thJur:"Jurisdicción", thReq:"Requests", thPii:"Requests con PII", thPiiIn:"PII en la región", thAllIn:"Todo en la región",
+ repCov:"Cobertura de auditoría: 100% de los requests registrados con modelo, jurisdicción, motivo de política y costo. El informe refleja solo esta sesión simulada.",
+ btnCopy:"Copiar informe", btnClose:"Cerrar",
+}};
 /* ---------- data ---------- */
 const TENANTS=[
  {n:"Banco Andino",j:"AR",law:"Ley 25.326"},
@@ -476,15 +587,16 @@ const TENANTS=[
  {n:"Gob. Provincial",j:"AR",law:"Ley 25.326"}
 ];
 const WORK=[
- {w:"doc classification",c:1,pii:false},
- {w:"support chat",c:1,pii:false},
- {w:"translation",c:1,pii:false},
- {w:"contract extraction",c:2,pii:true},
- {w:"KYC review",c:2,pii:true},
- {w:"code assist",c:2,pii:false},
- {w:"fraud triage",c:3,pii:true},
- {w:"agent workflow",c:3,pii:false}
+ {w:"doc classification",es:"clasificación de documentos",c:1,pii:false},
+ {w:"support chat",es:"chat de soporte",c:1,pii:false},
+ {w:"translation",es:"traducción",c:1,pii:false},
+ {w:"contract extraction",es:"extracción de contratos",c:2,pii:true},
+ {w:"KYC review",es:"revisión KYC",c:2,pii:true},
+ {w:"code assist",es:"asistencia de código",c:2,pii:false},
+ {w:"fraud triage",es:"triage de fraude",c:3,pii:true},
+ {w:"agent workflow",es:"flujo de agentes",c:3,pii:false}
 ];
+const workName=w=>tx(w.w,w.es);
 const RATE={f:12.0,o:1.2,s:2.5};
 const PLAT_FEE=4000;
 /* ---------- state ---------- */
@@ -503,8 +615,8 @@ const els={req:$("mReq"),rate:$("mRate"),spend:$("mSpend"),base:$("mBase"),save:
  wires:$("wires"),tkPlat:$("tkPlat"),tkUse:$("tkUse"),tkPipe:$("tkPipe"),tkTot:$("tkTot")};
 const LANE_META={
  f:{color:"var(--amber)",glow:"rgba(227,179,65,.55)",label:()=>"→ FRONTIER · $"+frontierRate().toFixed(2)+"/M"},
- o:{color:"var(--teal)",glow:"rgba(56,208,183,.65)",label:()=>"→ IN-REGION · $1.20/M"},
- s:{color:"var(--blue)",glow:"rgba(95,184,255,.55)",label:()=>"→ SOVEREIGN · $2.50/M"}};
+ o:{color:"var(--teal)",glow:"rgba(56,208,183,.65)",label:()=>tx("→ IN-REGION · $1.20/M","→ EN LA REGIÓN · $1.20/M")},
+ s:{color:"var(--blue)",glow:"rgba(95,184,255,.55)",label:()=>tx("→ SOVEREIGN · $2.50/M","→ SOBERANO · $2.50/M")}};
 /* tenants list */
 const tWrap=$("tenants");
 function tenantCard(t,i){const d=document.createElement("div");d.className="tenant";d.id="ten"+i;
@@ -564,15 +676,17 @@ function syncWireState(){
  }
 }
 /* ---------- routing (the whole thesis) ---------- */
+/* Each result carries a stable `crit` key so the criteria lights keep working
+   in any language — never match on the translated `why` text. */
 function route(t,w){
- if(S.res&&w.pii) return {lane:"s",why:"Residency · "+t.law};
+ if(S.res&&w.pii) return {lane:"s",crit:"residency",why:tx("Residency · ","Residencia · ")+t.law};
  if(w.c>=S.th){
-   if(S.outage) return {lane:"o",why:"Failover · US outage"};
-   return {lane:"f",why:"Complexity ≥ threshold"};
+   if(S.outage) return {lane:"o",crit:"failover",why:tx("Failover · US outage","Failover · caída en EE.UU.")};
+   return {lane:"f",crit:"complexity",why:tx("Complexity ≥ threshold","Complejidad ≥ umbral")};
  }
- if(S.costOpt) return {lane:"o",why:"Cheapest clearing quality bar"};
- if(S.outage) return {lane:"o",why:"Failover · US outage"};
- return {lane:"f",why:"Default · frontier"};
+ if(S.costOpt) return {lane:"o",crit:"cost",why:tx("Cheapest clearing quality bar","El más barato que cumple la calidad")};
+ if(S.outage) return {lane:"o",crit:"failover",why:tx("Failover · US outage","Failover · caída en EE.UU.")};
+ return {lane:"f",crit:"cost",why:tx("Default · frontier","Por defecto · frontier")};
 }
 /* ---------- hub readout + flash ---------- */
 let lastRo=0,roHoldUntil=0;
@@ -581,22 +695,20 @@ function updateReadout(t,w,r){
  if(now<roHoldUntil||now-lastRo<300)return;
  lastRo=now;
  const m=LANE_META[r.lane];
- els.roWho.textContent=t.n.toUpperCase()+" · "+w.w.toUpperCase();
+ els.roWho.textContent=t.n.toUpperCase()+" · "+workName(w).toUpperCase();
  els.roLane.textContent=m.label();
  els.roLane.style.color=m.color;
  els.roWhy.textContent=r.why;
 }
-const CRIT_MAP={Residency:"residency",Complexity:"complexity",Cheapest:"cost",Failover:"failover",Default:"cost"};
-function critLight(why,color){
- const key=Object.keys(CRIT_MAP).find(k=>why.indexOf(k)===0);
- const el=key?els.hub.querySelector('#crit [data-c="'+CRIT_MAP[key]+'"]'):null;
+function critLight(crit,color){
+ const el=crit?els.hub.querySelector('#crit [data-c="'+crit+'"]'):null;
  if(!el)return;
  el.style.color=color;el.style.borderColor=color;
  clearTimeout(el._t);el._t=setTimeout(()=>{el.style.color="";el.style.borderColor="";},400);
 }
 function hubFlash(r){
  const m=LANE_META[r.lane];
- critLight(r.why,m.color);
+ critLight(r.crit,m.color);
  if(reduceMotion)return;
  els.hub.style.borderColor=m.color;els.hub.style.boxShadow="0 0 30px "+m.glow;
  clearTimeout(hubFlash._t);
@@ -604,7 +716,7 @@ function hubFlash(r){
 }
 function policyPulse(shortLabel,msg){
  roHoldUntil=Date.now()+1600;
- els.roWho.textContent="ROUTER POLICY UPDATED";
+ els.roWho.textContent=tx("ROUTER POLICY UPDATED","POLÍTICA DEL ROUTER ACTUALIZADA");
  els.roLane.textContent=shortLabel;
  els.roLane.style.color="var(--teal)";
  els.roWhy.textContent=msg;
@@ -633,7 +745,7 @@ function addLog(t,w,r,cost){
  row.innerHTML='<span class="seq">#'+String(S.seq).padStart(3,"0")+'</span>'+
   '<span class="ln" style="background:'+colors[r.lane]+'"></span>'+
   '<span class="who">'+t.n+'</span>'+
-  '<span class="why">'+w.w+' — '+r.why+'</span>'+
+  '<span class="why">'+workName(w)+' — '+r.why+'</span>'+
   '<span class="c">'+fmtCost(cost)+'</span>';
  els.log.prepend(row);
  while(els.log.children.length>32)els.log.lastChild.remove();
@@ -643,7 +755,9 @@ function addPipe(t,w){
  if(els.pipe.children.length>=6)return;
  const est=(80+Math.round(Math.random()*160));
  const d=document.createElement("div");d.className="item";
- d.innerHTML="<b>"+t.n+"</b> · "+w.w+'<div class="m">recurring residency-bound demand · ~'+est+"k tok/day · reserved-capacity candidate</div>";
+ d.innerHTML="<b>"+t.n+"</b> · "+workName(w)+'<div class="m">'+
+  tx("recurring residency-bound demand · ~"+est+"k tok/day · reserved-capacity candidate",
+     "demanda recurrente atada a residencia · ~"+est+"k tok/día · candidata a capacidad reservada")+"</div>";
  els.pipe.appendChild(d);
 }
 function renderStats(){
@@ -658,7 +772,7 @@ function renderStats(){
  els.reg.textContent=pct(inr);
  ["f","o","s"].forEach(k=>{const share=Math.round(100*S.lanes[k]/Math.max(S.req,1));
    els.cnt[k].textContent=share+"%";
-   els.raw[k].textContent="· "+S.lanes[k]+" req";
+   els.raw[k].textContent="· "+S.lanes[k]+tx(" req"," req");
    els.bar[k].style.width=share+"%";});
  els.tagMaj.style.display=(S.lanes.o/Math.max(S.req,1))>=.5?"inline-block":"none";
  syncWireState();
@@ -671,7 +785,7 @@ function renderTake(){
  els.tkTot.textContent=fmt$(S.plat+use);
  els.mTake.textContent=fmt$(S.plat+use);
  const nPipe=els.pipe.querySelectorAll(".item").length;
- els.tkPipe.textContent=nPipe+(nPipe===1?" candidate":" candidates");
+ els.tkPipe.textContent=nPipe+(nPipe===1?tx(" candidate"," candidata"):tx(" candidates"," candidatas"));
 }
 /* platform fees accrue tenant-by-tenant from the moment each is on the platform;
    the clock stops while paused — no retroactive billing on onboarding */
@@ -723,32 +837,34 @@ function tick(){
 function schedule(){setTimeout(tick,(650+Math.random()*350)/S.speed);}
 schedule();
 /* ---------- controls ---------- */
+// States are thunks so their copy resolves in whatever language is active now.
 function bindSwitch(el,key,onState,offState){
  const flip=()=>{S[key]=!S[key];el.classList.toggle("on",S[key]);
   el.setAttribute("aria-checked",S[key]);
-  const st=S[key]?onState:offState;
+  const st=(S[key]?onState:offState)();
   policyPulse(st.label,st.msg);banner(st.msg);};
  el.addEventListener("click",flip);
  el.addEventListener("keydown",e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip();}});
 }
 bindSwitch($("swCost"),"costOpt",
- {label:"COST OPT ON",msg:"Cost optimization on — routing to cheapest model clearing quality"},
- {label:"COST OPT OFF",msg:"Cost optimization off — defaulting to frontier"});
+ ()=>({label:tx("COST OPT ON","COSTO OPT ON"),msg:tx("Cost optimization on — routing to cheapest model clearing quality","Optimización de costo activada — ruteando al modelo más barato que cumple la calidad")}),
+ ()=>({label:tx("COST OPT OFF","COSTO OPT OFF"),msg:tx("Cost optimization off — defaulting to frontier","Optimización de costo desactivada — yendo a frontier por defecto")}));
 bindSwitch($("swRes"),"res",
- {label:"RESIDENCY ON",msg:"Residency enforced — PII workloads now stay in-jurisdiction"},
- {label:"RESIDENCY OFF",msg:"Residency enforcement off"});
-$("thSlide").addEventListener("input",e=>{S.th=+e.target.value;$("thVal").textContent=S.th+" of 3";
- policyPulse("THRESHOLD "+S.th+" OF 3","tasks at complexity ≥ "+S.th+" now go to frontier models");});
+ ()=>({label:tx("RESIDENCY ON","RESIDENCIA ON"),msg:tx("Residency enforced — PII workloads now stay in-jurisdiction","Residencia forzada — las cargas con datos personales ahora se quedan en la jurisdicción")}),
+ ()=>({label:tx("RESIDENCY OFF","RESIDENCIA OFF"),msg:tx("Residency enforcement off","Residencia sin forzar")}));
+$("thSlide").addEventListener("input",e=>{S.th=+e.target.value;$("thVal").textContent=S.th+tx(" of 3"," de 3");
+ policyPulse(tx("THRESHOLD "+S.th+" OF 3","UMBRAL "+S.th+" DE 3"),
+  tx("tasks at complexity ≥ "+S.th+" now go to frontier models","las tareas con complejidad ≥ "+S.th+" ahora van a modelos frontier"));});
 $("btnHike").addEventListener("click",function(){S.hike=!S.hike;this.classList.toggle("active",S.hike);
  els.rateF.textContent="$"+frontierRate().toFixed(2)+" / M tokens";
  els.tagHike.style.display=S.hike?"inline-block":"none";
- banner(S.hike?"Frontier prices +40% — watch the spread widen":"Frontier prices back to list","var(--amber)");});
+ banner(S.hike?tx("Frontier prices +40% — watch the spread widen","Precios frontier +40% — mirá cómo se abre el spread"):tx("Frontier prices back to list","Precios frontier de vuelta a lista"),"var(--amber)");});
 $("btnOutage").addEventListener("click",function(){S.outage=!S.outage;this.classList.toggle("active",S.outage);
  els.laneF.classList.toggle("outage",S.outage);
  syncWireState();
- banner(S.outage?"US provider outage — traffic failing over, zero requests dropped":"US provider restored","var(--rose)");});
-$("btnPause").addEventListener("click",function(){S.paused=!S.paused;this.textContent=S.paused?"Resume":"Pause";this.classList.toggle("active",S.paused);});
-$("btnSpeed").addEventListener("click",function(){S.speed=S.speed===1?3:1;this.textContent="Speed "+S.speed+"×";this.classList.toggle("active",S.speed===3);});
+ banner(S.outage?tx("US provider outage — traffic failing over, zero requests dropped","Caída del proveedor en EE.UU. — el tráfico hace failover, cero requests perdidos"):tx("US provider restored","Proveedor de EE.UU. restablecido"),"var(--rose)");});
+$("btnPause").addEventListener("click",function(){S.paused=!S.paused;this.textContent=S.paused?tx("Resume","Reanudar"):tx("Pause","Pausar");this.classList.toggle("active",S.paused);});
+$("btnSpeed").addEventListener("click",function(){S.speed=S.speed===1?3:1;this.textContent=tx("Speed ","Velocidad ")+S.speed+"×";this.classList.toggle("active",S.speed===3);});
 $("btnReset").addEventListener("click",()=>location.reload());
 /* ---------- onboard tenant: the growth beat ---------- */
 $("btnTenant").addEventListener("click",function(){
@@ -758,16 +874,22 @@ $("btnTenant").addEventListener("click",function(){
  const card=tenantCard(TENANTS[i],i);card.classList.add("new");
  tWrap.appendChild(card);
  setTimeout(()=>card.classList.remove("new"),1800);
- $("polNote").textContent="Residency laws applied: LGPD (BR), Ley 25.326 (AR), LFPDPPP (MX), Ley 19.628 (CL), Ley 18.331 (UY), Ley 1581 (CO).";
+ S.coopAdded=true;
+ $("polNote").textContent=tx("Residency laws applied: ","Leyes de residencia aplicadas: ")+
+  "LGPD (BR), Ley 25.326 (AR), LFPDPPP (MX), Ley 19.628 (CL), Ley 18.331 (UY), Ley 1581 (CO).";
  drawWires();updateRunrate();renderStats();
- this.disabled=true;this.textContent="Coop. Norte onboarded";
- banner("Coop. Norte onboarded — platform MRR +$4,000");
+ this.disabled=true;this.textContent=tx("Coop. Norte onboarded","Coop. Norte sumada");
+ banner(tx("Coop. Norte onboarded — platform MRR +$4,000","Coop. Norte sumada — MRR de plataforma +$4.000"));
 });
 /* ---------- CISO report ---------- */
 const modal=$("modal");
 function econLine(){
- return S.base>0?"Routing economics this session (simulated): "+fmt$(S.spend)+" routed spend vs "+
-  fmt$(S.base)+" frontier-only baseline — "+fmt$(S.base-S.spend)+" ("+pct(1-S.spend/S.base)+") saved by policy routing.":"";
+ if(!(S.base>0))return "";
+ return tx(
+  "Routing economics this session (simulated): "+fmt$(S.spend)+" routed spend vs "+fmt$(S.base)+
+   " frontier-only baseline — "+fmt$(S.base-S.spend)+" ("+pct(1-S.spend/S.base)+") saved by policy routing.",
+  "Economía del ruteo en esta sesión (simulada): "+fmt$(S.spend)+" de gasto ruteado contra una base de "+
+   fmt$(S.base)+" solo con frontier — "+fmt$(S.base-S.spend)+" ("+pct(1-S.spend/S.base)+") ahorrado por el ruteo con política.");
 }
 $("btnReport").addEventListener("click",()=>{
  const b=$("repBody");b.innerHTML="";
@@ -776,26 +898,62 @@ $("btnReport").addEventListener("click",()=>{
   b.insertAdjacentHTML("beforeend","<tr><td>"+j+"</td><td class='num'>"+r.req+"</td><td class='num'>"+r.pii+
    "</td><td class='num'>"+(r.pii?Math.round(100*r.piiIn/r.pii)+"%":"—")+
    "</td><td class='num'>"+Math.round(100*r.inr/r.req)+"%</td></tr>");});
- if(!b.children.length)b.innerHTML="<tr><td colspan='5'>No traffic yet — let the board run for a moment.</td></tr>";
+ if(!b.children.length)b.innerHTML="<tr><td colspan='5'>"+tx("No traffic yet — let the board run for a moment.","Todavía no hay tráfico — dejá correr el tablero un momento.")+"</td></tr>";
  $("repEcon").textContent=econLine();
- $("repMeta").textContent="simulated · generated "+new Date().toLocaleString();
+ $("repMeta").textContent=tx("simulated · generated ","simulado · generado ")+new Date().toLocaleString(tx("en-US","es-AR"));
  modal.classList.add("open");
 });
 $("btnClose").addEventListener("click",()=>modal.classList.remove("open"));
 modal.addEventListener("click",e=>{if(e.target===modal)modal.classList.remove("open");});
 $("btnCopy").addEventListener("click",function(){
- let txt="TORRE — residency & audit summary (simulated session)\n";
- Object.entries(S.jur).forEach(([j,r])=>{txt+=j+": "+r.req+" req · PII "+r.pii+" · PII in-region "+
-  (r.pii?Math.round(100*r.piiIn/r.pii)+"%":"—")+" · all in-region "+Math.round(100*r.inr/r.req)+"%\n";});
+ let txt=tx("TORRE — residency & audit summary (simulated session)\n","TORRE — resumen de residencia y auditoría (sesión simulada)\n");
+ Object.entries(S.jur).forEach(([j,r])=>{txt+=j+": "+r.req+tx(" req · PII "," req · PII ")+r.pii+
+  tx(" · PII in-region "," · PII en la región ")+(r.pii?Math.round(100*r.piiIn/r.pii)+"%":"—")+
+  tx(" · all in-region "," · todo en la región ")+Math.round(100*r.inr/r.req)+"%\n";});
  if(S.base>0)txt+=econLine()+"\n";
- txt+="Audit coverage: 100% of requests logged.";
- if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt);this.textContent="Copied";
-  setTimeout(()=>this.textContent="Copy report",1400);}
+ txt+=tx("Audit coverage: 100% of requests logged.","Cobertura de auditoría: 100% de los requests registrados.");
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt);this.textContent=tx("Copied","Copiado");
+  setTimeout(()=>this.textContent=tx("Copy report","Copiar informe"),1400);}
 });
+/* ---------- language apply + init ----------
+   English is snapshotted from the markup so it is never duplicated. Buttons whose
+   label reflects live state (pause/speed/onboard) are re-derived, not restored. */
+const EN_SNAP={};
+document.querySelectorAll("[data-i18n]").forEach(el=>{EN_SNAP[el.getAttribute("data-i18n")]=el.innerHTML;});
+
+function applyLang(lang){
+ LANG=lang;
+ try{localStorage.setItem("torre_lang",lang);}catch(e){}
+ document.documentElement.lang=lang;
+ document.querySelectorAll("[data-i18n]").forEach(el=>{
+  const k=el.getAttribute("data-i18n");
+  const v=lang==="es"?(I18N.es[k]!=null?I18N.es[k]:EN_SNAP[k]):EN_SNAP[k];
+  if(v!=null)el.innerHTML=v;
+ });
+ document.querySelectorAll(".langbtn").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
+
+ // state-dependent labels the dictionary must not overwrite
+ $("btnPause").textContent=S.paused?tx("Resume","Reanudar"):tx("Pause","Pausar");
+ $("btnSpeed").textContent=tx("Speed ","Velocidad ")+S.speed+"×";
+ $("thVal").textContent=S.th+tx(" of 3"," de 3");
+ if(S.coopAdded){
+  $("btnTenant").textContent=tx("Coop. Norte onboarded","Coop. Norte sumada");
+  $("polNote").textContent=tx("Residency laws applied: ","Leyes de residencia aplicadas: ")+
+   "LGPD (BR), Ley 25.326 (AR), LFPDPPP (MX), Ley 19.628 (CL), Ley 18.331 (UY), Ley 1581 (CO).";
+ }
+ // the pipeline empty-state is markup, but populated items are generated — leave them
+ renderStats();updateRunrate();drawWires();
+ if(modal.classList.contains("open"))$("btnReport").click();
+}
+document.querySelectorAll(".langbtn").forEach(b=>{
+ b.addEventListener("click",()=>applyLang(b.dataset.lang));
+});
+
 /* ---------- wire lifecycle ---------- */
 let rz;window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(drawWires,150);});
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>drawWires());
 drawWires();updateRunrate();
+applyLang(LANG);
 })();
 </script>
 <script defer src="https://gallery.q-starr.app/track.js" data-site="torre"></script>
